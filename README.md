@@ -121,6 +121,9 @@ Create a .config.json file, change username and password of your mysql and place
 > python3 manage.py migrate
 ```
 
+### Run srcipt to add cities and provinces
+In mysql workbench run the scripts under sql-scripts/location.sql
+
 ### Create Django admin superuser 'admin'
 ```
 > python3 manage.py createsuperuser --username admin
