@@ -222,36 +222,36 @@ class ProductListView(View):
 #             kwargs['categories__id__in'] = cats.split(',')
         if restaurants:
             if q:
-                q = q | Q(manufactory__id__in=restaurants.split(','))
+                q = q | Q(restaurant__id__in=restaurants.split(','))
             else:
-                q = Q(manufactory__id__in=restaurants.split(','))
-#             kwargs['manufactory__id__in'] = restaurants.split(',')
+                q = Q(restaurant__id__in=restaurants.split(','))
+#             kwargs['restaurant__id__in'] = restaurants.split(',')
         if colors:
             if q:
                 q = q | Q(color__id__in=colors.split(','))
             else:
-                q = Q(manufactory__id__in=restaurants.split(','))
+                q = Q(restaurant__id__in=restaurants.split(','))
 #             kwargs['color__id__in'] = colors.split(',')
 
             
-        manufactory_id = req.GET.get('manufactory_id')
+        restaurant_id = req.GET.get('restaurant_id')
         category_id = req.GET.get('category_id')
         
 #         if keyword:
 #             products = Product.objects.filter(Q(title__icontains=keyword)
 #                                             |Q(description__icontains=keyword)
-#                                             #|Q(manufactory__name__icontains=keyword)
+#                                             #|Q(restaurant__name__icontains=keyword)
 #                                             |Q(year=keyword)).annotate(n_likes=Count('favoriteproduct'))
 #         
-        if manufactory_id:
-            products = Product.objects.filter(manufactory_id=manufactory_id).annotate(n_likes=Count('favoriteproduct'))
+        if restaurant_id:
+            products = Product.objects.filter(restaurant_id=restaurant_id).annotate(n_likes=Count('favoriteproduct'))
         elif category_id:
             products = Product.objects.filter(category_id=category_id).annotate(n_likes=Count('favoriteproduct'))
         elif cats or restaurants or colors:
             if keyword:
                 products = Product.objects.filter(q).filter(Q(name__icontains=keyword)
                                                   |Q(categories__name__icontains=keyword)
-                                                  |Q(manufactory__name__icontains=keyword)
+                                                  |Q(restaurant__name__icontains=keyword)
                                                   |Q(color__name__icontains=keyword))
             else:
                 products = Product.objects.filter(q)
@@ -259,7 +259,7 @@ class ProductListView(View):
             if keyword:
                 products = Product.objects.filter(Q(name__icontains=keyword)
                                                   |Q(categories__name__icontains=keyword)
-                                                  |Q(manufactory__name__icontains=keyword)
+                                                  |Q(restaurant__name__icontains=keyword)
                                                   |Q(color__name__icontains=keyword))
             else:
                 products = Product.objects.filter().annotate(n_likes=Count('favoriteproduct'))
@@ -335,9 +335,9 @@ class ProductView(View):
             # except:
             #     color = None
             try:
-                manufactory = Restaurant.objects.get(id=req.POST.get('manufactory_id'))
+                restaurant = Restaurant.objects.get(id=req.POST.get('restaurant_id'))
             except:
-                manufactory = None
+                restaurant = None
                 
             _id = params.get('id')
             
@@ -348,12 +348,10 @@ class ProductView(View):
 
             item.name = params.get('name')
             item.description = params.get('description')
-            item.year = params.get('year')
-            item.dimension = params.get('dimension')
             item.price = params.get('price')
             item.currency = params.get('currency')
             # item.color = color
-            item.manufactory = manufactory
+            item.restaurant = restaurant
             #item.category = category
 
             item.save()
