@@ -1,0 +1,755 @@
+{
+	"variables": [],
+	"info": {
+		"name": "rdshop",
+		"_postman_id": "126149ef-75f1-875c-a888-344f0182c7b8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "carts",
+			"description": "",
+			"item": [
+				{
+					"name": "carts",
+					"request": {
+						"url": {
+							"raw": "{{url}}/carts?buyer_id=1&product_id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							],
+							"query": [
+								{
+									"key": "buyer_id",
+									"value": "1",
+									"equals": true
+								},
+								{
+									"key": "product_id",
+									"value": "1",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "carts",
+					"request": {
+						"url": "{{url}}/carts",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"buyer_id\":\"1\",\"product_id\":\"1\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/carts?buyer_id=1&product_id=1",
+					"request": {
+						"url": {
+							"raw": "{{url}}/carts?buyer_id=1&product_id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							],
+							"query": [
+								{
+									"key": "buyer_id",
+									"value": "1",
+									"equals": true
+								},
+								{
+									"key": "product_id",
+									"value": "1",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"url": "{{url}}/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"account\":\"jack3\",\"password\":\"123456\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "signup from main website",
+					"request": {
+						"url": "{{url}}/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"jack3\",\"email\":\"jack3@yocompute.com\",\"password\":\"123456\", \"firstname\":\"jack\", \"lastname\": \"yin\",\"source\":\"main\",\"portrait\":\"\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "signup from google",
+					"request": {
+						"url": "{{url}}/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"jack3\",\"email\":\"jack3@yocompute.com\",\"password\":\"123456\", \"firstname\":\"jack\", \"lastname\": \"yin\",\"portrait\":\"my.png\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "login http get",
+					"request": {
+						"url": "{{url}}/login",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"account\":\"jack3\",\"password\":\"123456\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"url": "{{url}}/users",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"description": "user related api",
+			"item": [
+				{
+					"name": "get profiles",
+					"request": {
+						"url": {
+							"raw": "{{url}}/profiles?user_id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profiles"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "get user by email",
+					"request": {
+						"url": {
+							"raw": "{{url}}/users?email=likzhang@gmail.com",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "likzhang@gmail.com",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "save profile",
+					"request": {
+						"url": "{{url}}/profiles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user_id\":1, \"description\":\"author\", \"phone\":\"123456\", \"street\":\"100 King West St\", \"unit\":\"2302\", \"province_id\":1, \"city_id\":1, \"portrait\":\"portrait/admin/portrait.png\"}"
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "update profile",
+					"request": {
+						"url": "{{url}}/profiles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":3,\"user_id\":1, \"description\":\"author 2\", \"phone\":\"123456\", \"street\":\"100 King West St\", \"unit\":\"2302\", \"province_id\":2, \"city_id\":3, \"portrait\":\"portrait/admin/portrait.png\"}"
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "get provinces",
+					"request": {
+						"url": {
+							"raw": "{{url}}/provinces?country=CN",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"provinces"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "CN",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "get cities",
+					"request": {
+						"url": {
+							"raw": "{{url}}/cities?province=CN",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cities"
+							],
+							"query": [
+								{
+									"key": "province",
+									"value": "CN",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "commerce",
+			"description": "",
+			"item": [
+				{
+					"name": "get all products",
+					"request": {
+						"url": "{{url}}/products",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "get cart",
+					"request": {
+						"url": {
+							"raw": "{{url}}/carts?buyer_id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							],
+							"query": [
+								{
+									"key": "buyer_id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "add product to cart",
+					"request": {
+						"url": "{{url}}/cart-items",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"buyer_id\":\"1\",\"product_id\":\"1\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del product from cart",
+					"request": {
+						"url": {
+							"raw": "{{url}}/cart-items?buyer_id=1&product_id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cart-items"
+							],
+							"query": [
+								{
+									"key": "buyer_id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "product_id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get product filter",
+					"request": {
+						"url": "{{url}}/filters",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get all items"
+					},
+					"response": []
+				},
+				{
+					"name": "get productByid",
+					"request": {
+						"url": {
+							"raw": "{{url}}/product/?id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "forget password",
+			"request": {
+				"url": "{{url}}/forget-password",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"likzhang@gmail.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "change password",
+			"request": {
+				"url": "{{url}}/change-password",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user_id\":\"2\",\"old_password\":\"likzhang@gmail.com\", \"password\":\"123456\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Contact Us",
+			"request": {
+				"url": "{{url}}/contact_us",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"jack3\",\"email\":\"jisuanjijing@163.com\",\"phone\":\"123456\",\"message\":\"sdsdsfd\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "save key",
+			"request": {
+				"url": "http://localhost:8000/keys",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get all pictures",
+			"request": {
+				"url": "{{url}}/pictures",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "get all items"
+			},
+			"response": []
+		},
+		{
+			"name": "get-item-by-id",
+			"request": {
+				"url": "http://localhost:8000/items/1",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "upload-item",
+			"request": {
+				"url": "http://localhost:8000/upload",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Martha Casanave",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"value": "",
+							"type": "file"
+						},
+						{
+							"key": "description",
+							"value": "Ansel Adams, 1982, Vintage \n10\"x14\" Silver Gelatin Photograph\n16\"x20\" mount/mat\nSigned, mint condition ",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "Ansel Adams",
+							"type": "text"
+						},
+						{
+							"key": "dimension",
+							"value": "10\"x14\"",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "1982",
+							"type": "text"
+						},
+						{
+							"key": "n_copies",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "photo",
+							"type": "text"
+						},
+						{
+							"key": "source",
+							"value": "market",
+							"type": "text"
+						},
+						{
+							"key": "style",
+							"value": "contemporary",
+							"type": "text"
+						},
+						{
+							"key": "fpath",
+							"value": "/Ansel Adams/DSC00044.JPG",
+							"type": "text"
+						},
+						{
+							"key": "created",
+							"value": "2016-09-30",
+							"type": "text"
+						},
+						{
+							"key": "updated",
+							"value": "2017-06-12",
+							"type": "text"
+						},
+						{
+							"key": "owner_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add products",
+			"request": {
+				"url": "http://localhost:8000/products",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"price\":300,\"currency\":\"usd\",\"status\":\"active\",\"created\":\"2017-06-30\",\"updated\":\"2017-07-04\",\"owner_id\":1,\"item_id\":3}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
