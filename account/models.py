@@ -36,9 +36,11 @@ class City(Model):
 class Address(Model):
     street = CharField(max_length=256, null=True, blank = True)
     unit = CharField(max_length=256, null=True, blank = True)
-    #zip_code = CharField(max_length=64, null=True, blank = True)
+    postal_code = CharField(max_length=32, null=True, blank = True)
     province = ForeignKey(Province, null=True, blank=True, db_column='province_id', on_delete=models.CASCADE)
     city = ForeignKey(City, null=True, blank=True, db_column='city_id', on_delete=models.CASCADE)
+    lat = CharField(max_length=32, null=True, blank = True)
+    lng = CharField(max_length=32, null=True, blank = True)
     
     def __str__(self):
         return self.unit + " " + self.street + ", " + self.city.name + ", " + self.province.name

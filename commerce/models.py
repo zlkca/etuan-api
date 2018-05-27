@@ -13,16 +13,6 @@ CATERGORIES = (('furniture','Furniture'), ('cad', 'CAD'))
 CURRENCIES = (('usd','USD'), ('cad', 'CAD'), ('cny','CNY'))
 STATUS = (('active','Active'), ('inactive', 'Inactive'))
 
-class Restaurant(Model):
-    name = CharField(max_length=255, null=True, blank=True)
-    description = CharField(max_length=800, null=True, blank=True)
-    address = ForeignKey(Address, null=True, blank=True, db_column='address_id', on_delete=models.CASCADE)
-    created = DateTimeField(auto_now_add=True)
-    updated = DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-
 class Category(Model):
     name = CharField(max_length=128, null=True, blank=True)
     description = CharField(max_length=500, null=True, blank=True)
@@ -36,6 +26,17 @@ class Category(Model):
     def __str__(self):
         return self.name
     
+class Restaurant(Model):
+    name = CharField(max_length=255, null=True, blank=True)
+    description = CharField(max_length=800, null=True, blank=True)
+    address = ForeignKey(Address, null=True, blank=True, db_column='address_id', on_delete=models.CASCADE)
+    categories = ManyToManyField(Category)
+    created = DateTimeField(auto_now_add=True)
+    updated = DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.name
+
 # class Color(Model):
 #     name = CharField(max_length=128, null=True, blank=True)
 #     description = CharField(max_length=500, null=True, blank=True)

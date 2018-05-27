@@ -19,7 +19,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-# from account.models import User
+from account.models import Province, City, Address
 from utils import to_json, create_jwt_token, get_data_from_token
 
 ERR_USER_EXIST = 1
@@ -33,52 +33,115 @@ DEFAULT_PORTRAIT='assets/portrait.png'
 logger = logging.getLogger(__name__)
 
 
-
 @method_decorator(csrf_exempt, name='dispatch')
 class ProvinceView(View):
+    def getList(self):
+        ps = []
+        try:
+            ps = Province.objects.all()#.annotate(n_products=Count('product'))
+        except Exception as e:
+            logger.error('Get provinces Exception:%s'%e)
+            return JsonResponse({'data':[]})
+        return JsonResponse({'data': to_json(ps)})
+    
     def get(self, req, *args, **kwargs):
-        ps = None
-        s = []
-#         code = req.GET.get('country_code')
-#         code = code if code else 'CA'
-# 
-#         try:
-#             ps = Province.objects.filter(country_code=code);
-#         except Exception as e:
-#             logger.error('%s ProvinceView get exception:%s'%(datetime.now(), e))
-#         
-#         if ps:
-#             for p in ps:
-#                 s.append(p.to_json())
-        
-        return JsonResponse({'provinces':s})
+        pid = req.GET.get('id')
+        if pid:
+            pid = int(pid)
+            try:
+                item = Province.objects.get(id=pid)
+                return JsonResponse({'data':to_json(item)})
+            except Exception as e:
+                print(e.message);
+                return JsonResponse({'data':''})
+        else:
+            return self.getList()
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CityView(View):
+    def getList(self, province_id=None):
+        cs = []
+        
+        try:
+            if province_id:
+                cs = City.objects.filter(province_id=province_id)
+            else:
+                cs = City.objects.all()#.annotate(n_products=Count('product'))
+        except Exception as e:
+            logger.error('Get address Exception:%s'%e)
+            return JsonResponse({'data':[]})
+        return JsonResponse({'data': to_json(cs)})
+    
     def get(self, req, *args, **kwargs):
-        cs = None
-        s = []
-        province_id = req.GET.get('province_id')
+        pid = req.GET.get('province_id')
+        cid = req.GET.get('id')
+        if cid:
+            cid = int(cid)
+            try:
+                item = City.objects.get(id=cid)
+                return JsonResponse({'data':to_json(item)})
+            except Exception as e:
+                print(e.message);
+                return JsonResponse({'data':''})
+        elif pid:
+            return self.getList(pid)
+        else:
+            return self.getList()
 
-#         try:
-#             if province_id:
-#                 cs = City.objects.filter(province_id=province_id).select_related('province')
-#             else:
-#                 country_code = req.GET.get('country_code')
-#                 if country_code:
-#                     ps = Province.objects.filter(country_code=country_code)
-#                     ids = [p.id for p in ps]
-#                     cs = City.objects.filter(province_id__in=ids)
-#                 else:
-#                     cs = City.objects.filter(province_code='ON').select_related('province')
-#         except Exception as e:
-#             logger.error('%s CityView get exception:%s'%(datetime.now(), e))
-# 
-#         if cs:
-#             for c in cs:
-#                 s.append(c.to_json())
+@method_decorator(csrf_exempt, name='dispatch')
+class AddressView(View):
+    def getList(self):
+        addrs = []
+        try:
+            addrs = Address.objects.all()#.annotate(n_products=Count('product'))
+        except Exception as e:
+            logger.error('Get address Exception:%s'%e)
+            return JsonResponse({'data':[]})
+        return JsonResponse({'data': to_json(addrs)})
+    
+    def get(self, req, *args, **kwargs):
+        pid = kwargs.get('id')
+        if pid:
+            pid = int(pid)
+            try:
+                item = Address.objects.get(id=pid)
+                return JsonResponse({'data':to_json(item)})
+            except Exception as e:
+                print(e.message);
+                return JsonResponse({'data':''})
+        else:
+            return self.getList()
+        
+    def delete(self, req, *args, **kwargs):
+        pid = int(kwargs.get('id'))
+        if pid:
+            instance = Address.objects.get(id=pid)
+            instance.delete()
+            items = Address.objects.filter().order_by('-updated')
+            return JsonResponse({'data':to_json(items)})
+        return JsonResponse({'data':[]})
+    
+    def post(self, req, *args, **kwargs):
+        params = json.loads(req.body)
 
-        return JsonResponse({'cities':s})
+        _id = params.get('id')
+        if _id:
+            item = Address.objects.get(id=_id)
+        else:                    
+            item = Address()
+            
+        item.street = params.get('street')
+        province_id = params.get('province_id')
+        city_id = params.get('city_id')
+        try:
+            item.province = Province.objects.get(id=province_id)
+            item.city = City.objects.get(id=city_id)
+        except Exception as e:
+            print(e.message)
+        
+        item.save()
+        return JsonResponse({'data':to_json(item)})
+
         
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginView(View):

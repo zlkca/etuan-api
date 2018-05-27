@@ -12,6 +12,8 @@ from rest_framework_jwt.settings import api_settings
 from django.core.exceptions import ObjectDoesNotExist#EmptyResultSet, MultipleObjectsReturned
 from django.contrib.auth import get_user_model
 from commerce.models import Restaurant, Picture, Product, Category, Style, PriceRange, FavoriteProduct 
+from account.models import Province, City, Address
+
 from utils import to_json, get_data_from_token
 
 logger = logging.getLogger(__name__)
@@ -60,7 +62,28 @@ class RestaurantView(View):
             
         item.name = params.get('name')
         item.description = params.get('description')
+        addr = params.get('address')
+        if(addr['id']):
+            addr1 = Address.objects.get(id=addr['id'])
+            addr1.street = addr['street']
+            addr1.postal_code = addr['postal_code']
+            addr1.province = Province.objects.get(id=addr['province_id'])
+            addr1.city = City.objects.get(id=addr['city_id'])
+            addr1.save()
+            item.address = addr1
+        else:
+            addr1 = Address()
+            addr1.street = addr['street']
+            addr1.postal_code = addr['postal_code']
+            try:
+                addr1.province = Province.objects.get(id=addr['province_id'])
+                addr1.city = City.objects.get(id=addr['city_id'])
+            except:
+                pass
+            addr1.save()
+            item.address = addr1
         item.save()
+        
         return JsonResponse({'data':to_json(item)})
 
 
