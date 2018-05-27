@@ -25,7 +25,7 @@ class RestaurantView(View):
         try:
             restaurants = Restaurant.objects.all()#.annotate(n_products=Count('product'))
         except Exception as e:
-            logger.error('Get manufactory Exception:%s'%e)
+            logger.error('Get restaurant Exception:%s'%e)
             return JsonResponse({'data':[]})
         return JsonResponse({'data': to_json(restaurants)})
     
@@ -52,40 +52,62 @@ class RestaurantView(View):
         return JsonResponse({'data':[]})
     
     def post(self, req, *args, **kwargs):
-        params = json.loads(req.body)
-
-        _id = params.get('id')
-        if _id:
-            item = Restaurant.objects.get(id=_id)
-        else:                    
-            item = Restaurant()
-            
-        item.name = params.get('name')
-        item.description = params.get('description')
-        addr = params.get('address')
-        if(addr['id']):
-            addr1 = Address.objects.get(id=addr['id'])
-            addr1.street = addr['street']
-            addr1.postal_code = addr['postal_code']
-            addr1.province = Province.objects.get(id=addr['province_id'])
-            addr1.city = City.objects.get(id=addr['city_id'])
-            addr1.save()
-            item.address = addr1
-        else:
-            addr1 = Address()
-            addr1.street = addr['street']
-            addr1.postal_code = addr['postal_code']
-            try:
-                addr1.province = Province.objects.get(id=addr['province_id'])
-                addr1.city = City.objects.get(id=addr['city_id'])
-            except:
-                pass
-            addr1.save()
-            item.address = addr1
-        item.save()
+        params = req.POST
+        authorizaion = req.META['HTTP_AUTHORIZATION']
+        token = authorizaion.replace("Bearer ", "")
+        data = get_data_from_token(token)
+        if data and data['username']=='admin':
+            _id = params.get('id')
+            if _id:
+                item = Restaurant.objects.get(id=_id)
+            else:                    
+                item = Restaurant()
+                
+            item.name = params.get('name')
+            item.description = params.get('description')
+            addr_id = params.get('address_id')
+            if(addr_id):
+                addr1 = Address.objects.get(id=addr_id)
+                addr1.street = params.get('street')
+                addr1.postal_code = params.get('postal_code')
+                try:
+                    addr1.province = Province.objects.get(id=params.get('province_id'))
+                    addr1.city = City.objects.get(id=params.get('city_id'))
+                except:
+                    pass
+                addr1.save()
+                item.address = addr1
+            else:
+                addr1 = Address()
+                addr1.street = params.get('street')
+                addr1.postal_code = params.get('postal_code')
+                try:
+                    addr1.province = Province.objects.get(id=params.get('province_id'))
+                    addr1.city = City.objects.get(id=params.get('city_id'))
+                except:
+                    pass
+                addr1.save()
+                item.address = addr1
+            item.save()
         
-        return JsonResponse({'data':to_json(item)})
-
+            image_status = params.get('image_status')
+            if image_status == 'changed':
+                self.rmPicture(item)
+                image  = req.FILES.get("image")
+                item.image.save(image.name, image.file, True)
+                item.save()
+            else:
+                pass
+            
+            
+            return JsonResponse({'data':to_json(item)})
+    
+    def rmPicture(self, item):
+        try:
+            os.remove(item.image.path)
+        except:
+            print('remove image failed')
+        item.image.delete()
 
 
 @method_decorator(csrf_exempt, name='dispatch')

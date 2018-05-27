@@ -25,12 +25,18 @@ class Category(Model):
 
     def __str__(self):
         return self.name
+
+def get_restaurant_image_path(instance, fpath):
+    import os
+    fname, ext = os.path.splitext(fpath)
+    return os.path.join('restaurants', str(instance.id) + ext)
     
 class Restaurant(Model):
     name = CharField(max_length=255, null=True, blank=True)
     description = CharField(max_length=800, null=True, blank=True)
     address = ForeignKey(Address, null=True, blank=True, db_column='address_id', on_delete=models.CASCADE)
     categories = ManyToManyField(Category)
+    image = ImageField(upload_to=get_restaurant_image_path)
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)
     
