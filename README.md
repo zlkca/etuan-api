@@ -1,5 +1,5 @@
-# rdshop-api
-rdshop-api is a django backend for angular 5 website
+# ehetuan-api
+ehetuan-api is a django backend for angular 5 website
 
 ## Requirement
 python 3.6.2
@@ -11,12 +11,12 @@ django 2.0
 
 Open a command line window, cd to rdshop-api folder, and create a py3 virtual environment folder:
 ```
-> cd rdshop-api
+> cd ehetuan-api
 > python -m venv py3
 ```
 If you have both python2.7 and python3.6 in your machine, use python3
 ```
-> cd rdshop-api
+> cd ehetuan-api
 > python3 -m venv py3
 ```
 
@@ -83,7 +83,7 @@ To create database, open mysql shell and issue command:
 mysql -u <your mysql username> -p
 ```
 ```
-mysql> CREATE DATABASE rdshop CHARACTER SET utf8 COLLATE utf8_general_ci;
+mysql> CREATE DATABASE ehetuan CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
 ### Create mysql account 'mydbuser'/mypasswd:
@@ -92,8 +92,6 @@ mysql> CREATE USER 'mydbuser'@'localhost' IDENTIFIED BY 'mypasswd';
 mysql> GRANT ALL PRIVILEGES ON * . * TO 'mydbuser'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
-
-
 
 ### Add a rdshop.config.json with your mysql credential
 Create a .config.json file, change username and password of your mysql and place under the rdshop-api's parent folder with following content:
@@ -114,16 +112,12 @@ Create a .config.json file, change username and password of your mysql and place
 }
 ```
 
-### Collect Static files
-```
-> cd rdshop-api
-> $ python3 manage.py collectstatic
-```
+
 
 ### Migrate Django tables
 ```
-> cd rdshop-api
-> python3 manage.py makemigrations accounts
+> cd ehetuan-api
+> python3 manage.py makemigrations account commerce
 > python3 manage.py migrate
 ```
 
