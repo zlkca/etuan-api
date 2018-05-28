@@ -5137,3 +5137,657 @@ Not Found: /api/colors
 (0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
 (0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
 "GET /api/restaurants HTTP/1.1" 200 869
+"OPTIONS /api/token HTTP/1.1" 200 0
+"POST /api/token HTTP/1.1" 200 40
+"OPTIONS /api/restaurants HTTP/1.1" 200 0
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.007) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+(0.003) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.001) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.002) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"OPTIONS /api/token HTTP/1.1" 200 0
+"POST /api/token HTTP/1.1" 200 40
+"OPTIONS /api/restaurants HTTP/1.1" 200 0
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"OPTIONS /api/token HTTP/1.1" 200 0
+"POST /api/token HTTP/1.1" 200 40
+"OPTIONS /api/restaurants HTTP/1.1" 200 0
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.002) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"GET /media/restaurants/1.jpg HTTP/1.1" 304 0
+"GET /media/restaurants/2.jpg HTTP/1.1" 304 0
+"GET /media/restaurants/3.jpeg HTTP/1.1" 304 0
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.001) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.003) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.007) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.004) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.003) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.002) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.003) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.004) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"POST /api/token HTTP/1.1" 200 40
+(0.008) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.007) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.002) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.008) SHOW FULL TABLES; args=None
+(0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.005) SHOW FULL TABLES; args=None
+(0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.005) SHOW FULL TABLES; args=None
+(0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.004) SHOW FULL TABLES; args=None
+(0.004) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+"OPTIONS /api/token HTTP/1.1" 200 0
+"OPTIONS /api/restaurants HTTP/1.1" 200 0
+"POST /api/token HTTP/1.1" 200 40
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.002) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant` LIMIT 21; args=()
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+"GET /api/restaurants HTTP/1.1" 200 869
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.008) SHOW FULL TABLES; args=None
+(0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+Internal Server Error: /api/restaurants
+Traceback (most recent call last):
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/utils/decorators.py", line 62, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/utils/decorators.py", line 58, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/views/generic/base.py", line 89, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/zlk/works/ehetuan-api/commerce/views/__init__.py", line 64, in get
+    return self.getList()#JsonResponse({'data':''})
+  File "/Users/zlk/works/ehetuan-api/commerce/views/__init__.py", line 38, in getList
+    r.address = to_json(addr)
+AttributeError: 'dict' object has no attribute 'address'
+"GET /api/restaurants HTTP/1.1" 500 92444
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant` LIMIT 21; args=()
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+Internal Server Error: /api/restaurants
+Traceback (most recent call last):
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/utils/decorators.py", line 62, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/utils/decorators.py", line 58, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/Users/zlk/works/rdshop-api/py3/lib/python3.6/site-packages/django/views/generic/base.py", line 89, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/zlk/works/ehetuan-api/commerce/views/__init__.py", line 64, in get
+    return self.getList()#JsonResponse({'data':''})
+  File "/Users/zlk/works/ehetuan-api/commerce/views/__init__.py", line 38, in getList
+    r.address = to_json(addr)
+AttributeError: 'dict' object has no attribute 'address'
+"GET /api/restaurants HTTP/1.1" 500 92444
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant` LIMIT 21; args=()
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.007) SHOW FULL TABLES; args=None
+(0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+"POST /api/token HTTP/1.1" 200 40
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"OPTIONS /api/token HTTP/1.1" 200 0
+"OPTIONS /api/restaurants HTTP/1.1" 200 0
+"POST /api/token HTTP/1.1" 200 40
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.002) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.005) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.001) SELECT VERSION(); args=None
+(0.002) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.003) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.000) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.008) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"OPTIONS /api/token HTTP/1.1" 200 0
+"OPTIONS /api/restaurants HTTP/1.1" 200 0
+"POST /api/token HTTP/1.1" 200 40
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.001) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"POST /api/token HTTP/1.1" 200 40
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.003) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.003) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.002) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.001) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"GET /media/restaurants/3.jpeg HTTP/1.1" 304 0
+"OPTIONS /api/token HTTP/1.1" 200 0
+"POST /api/token HTTP/1.1" 200 40
+"POST /api/token HTTP/1.1" 200 40
+"OPTIONS /api/restaurants HTTP/1.1" 200 0
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.001) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.001) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants HTTP/1.1" 200 1654
+"GET /media/restaurants/2.jpg HTTP/1.1" 304 0
+"OPTIONS /api/restaurants/undefined HTTP/1.1" 200 0
+"OPTIONS /api/categories HTTP/1.1" 200 0
+"GET /media/add_photo.png HTTP/1.1" 304 0
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT (1) AS `a` FROM `commerce_restaurant` LIMIT 1; args=()
+(0.001) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.001) SELECT `commerce_restaurant`.`id`, `commerce_restaurant`.`name`, `commerce_restaurant`.`description`, `commerce_restaurant`.`address_id`, `commerce_restaurant`.`image`, `commerce_restaurant`.`created`, `commerce_restaurant`.`updated` FROM `commerce_restaurant`; args=()
+(0.003) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT VERSION(); args=None
+(0.001) SELECT (1) AS `a` FROM `commerce_category` LIMIT 1; args=()
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.004) SELECT `commerce_category`.`id`, `commerce_category`.`name`, `commerce_category`.`description`, `commerce_category`.`created`, `commerce_category`.`updated` FROM `commerce_category`; args=()
+"GET /api/categories HTTP/1.1" 200 166
+(0.005) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1 LIMIT 1; args=(1,)
+(0.002) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 1; args=(1,)
+(0.001) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2 LIMIT 1; args=(2,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 2; args=(2,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT (1) AS `a` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3 LIMIT 1; args=(3,)
+(0.000) SELECT COUNT(*) AS `__count` FROM `commerce_category` INNER JOIN `commerce_restaurant_categories` ON (`commerce_category`.`id` = `commerce_restaurant_categories`.`category_id`) WHERE `commerce_restaurant_categories`.`restaurant_id` = 3; args=(3,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 1; args=(1,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 2; args=(2,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_address`.`id`, `account_address`.`street`, `account_address`.`unit`, `account_address`.`postal_code`, `account_address`.`province_id`, `account_address`.`city_id`, `account_address`.`lat`, `account_address`.`lng` FROM `account_address` WHERE `account_address`.`id` = 3; args=(3,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+(0.000) SELECT `account_city`.`id`, `account_city`.`name`, `account_city`.`province_id` FROM `account_city` WHERE `account_city`.`id` = 5130; args=(5130,)
+(0.000) SELECT `account_province`.`id`, `account_province`.`name`, `account_province`.`code`, `account_province`.`country_code` FROM `account_province` WHERE `account_province`.`id` = 48; args=(48,)
+"GET /api/restaurants/undefined HTTP/1.1" 200 1654

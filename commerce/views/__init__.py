@@ -27,7 +27,17 @@ class RestaurantView(View):
         except Exception as e:
             logger.error('Get restaurant Exception:%s'%e)
             return JsonResponse({'data':[]})
-        return JsonResponse({'data': to_json(restaurants)})
+        
+        rs = to_json(restaurants)
+        for r in rs:
+            try:
+                addr = Address.objects.get(id=r['address']['id'])
+            except:
+                addr = None
+            if addr:
+                r['address'] = to_json(addr)
+        
+        return JsonResponse({'data': rs })
     
     def getAddress(self, restaurant):
         addr_id = restaurant.address.id
@@ -78,31 +88,13 @@ class RestaurantView(View):
             item.description = params.get('description')
             addr_id = params.get('address_id')
             if(addr_id):
-                addr1 = Address.objects.get(id=addr_id)
-                addr1.street = params.get('street')
-                addr1.postal_code = params.get('postal_code')
-                addr1.lat = params.get('lat')
-                addr1.lng = params.get('lng')
-                try:
-                    addr1.province = Province.objects.get(id=params.get('province_id'))
-                    addr1.city = City.objects.get(id=params.get('city_id'))
-                except:
-                    pass
-                addr1.save()
-                item.address = addr1
+                addr = Address.objects.get(id=addr_id)
+                self.saveAddress(addr, params)
+                item.address = addr
             else:
-                addr1 = Address()
-                addr1.street = params.get('street')
-                addr1.postal_code = params.get('postal_code')
-                addr1.lat = params.get('lat')
-                addr1.lng = params.get('lng')
-                try:
-                    addr1.province = Province.objects.get(id=params.get('province_id'))
-                    addr1.city = City.objects.get(id=params.get('city_id'))
-                except:
-                    pass
-                addr1.save()
-                item.address = addr1
+                addr = Address()
+                self.saveAddress(addr, params)
+                item.address = addr
             item.save()
         
             image_status = params.get('image_status')
@@ -114,8 +106,19 @@ class RestaurantView(View):
             else:
                 pass
             
-            
             return JsonResponse({'data':to_json(item)})
+    
+    def saveAddress(self, addr1, params):
+        addr1.street = params.get('street')
+        addr1.postal_code = params.get('postal_code')
+        addr1.lat = params.get('lat')
+        addr1.lng = params.get('lng')
+        try:
+            addr1.province = Province.objects.get(id=params.get('province_id'))
+            addr1.city = City.objects.get(id=params.get('city_id'))
+        except:
+            pass
+        addr1.save()
     
     def rmPicture(self, item):
         try:
