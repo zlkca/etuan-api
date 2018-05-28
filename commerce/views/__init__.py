@@ -29,13 +29,24 @@ class RestaurantView(View):
             return JsonResponse({'data':[]})
         return JsonResponse({'data': to_json(restaurants)})
     
+    def getAddress(self, restaurant):
+        addr_id = restaurant.address.id
+        item = None
+        try:
+            item = Address.objects.get(id=addr_id)
+        except:
+            item = None
+        return to_json(item)
+        
     def get(self, req, *args, **kwargs):
         pid = kwargs.get('id')
         if pid:
             pid = int(pid)
             try:
                 item = Restaurant.objects.get(id=pid)
-                return JsonResponse({'data':to_json(item)})
+                p = to_json(item)
+                p['address'] = self.getAddress(item)
+                return JsonResponse({'data':p})
             except Exception as e:
                 print(e.message);
                 return JsonResponse({'data':''})
@@ -70,6 +81,8 @@ class RestaurantView(View):
                 addr1 = Address.objects.get(id=addr_id)
                 addr1.street = params.get('street')
                 addr1.postal_code = params.get('postal_code')
+                addr1.lat = params.get('lat')
+                addr1.lng = params.get('lng')
                 try:
                     addr1.province = Province.objects.get(id=params.get('province_id'))
                     addr1.city = City.objects.get(id=params.get('city_id'))
@@ -81,6 +94,8 @@ class RestaurantView(View):
                 addr1 = Address()
                 addr1.street = params.get('street')
                 addr1.postal_code = params.get('postal_code')
+                addr1.lat = params.get('lat')
+                addr1.lng = params.get('lng')
                 try:
                     addr1.province = Province.objects.get(id=params.get('province_id'))
                     addr1.city = City.objects.get(id=params.get('city_id'))
@@ -305,10 +320,10 @@ class ProductView(View):
             return JsonResponse({'product':''})
 
         product = products[0]
-        items = Picture.objects.filter(product_id=product.id)
+        pics = Picture.objects.filter(product_id=product.id)
         ps = []
-        for item in items:
-            ps.append(to_json(item))
+        for pic in pics:
+            ps.append(to_json(pic))
  
         p = to_json(product)
         p['pictures'] = ps

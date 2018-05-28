@@ -43,7 +43,7 @@ class Address(Model):
     lng = CharField(max_length=32, null=True, blank = True)
     
     def __str__(self):
-        return self.unit + " " + self.street + ", " + self.city.name + ", " + self.province.name
+        return self.unit + " " + self.street + ", " + self.postal_code
             
 class User(AbstractUser):
     """ type --- 'guest', 'member', 'admin'
