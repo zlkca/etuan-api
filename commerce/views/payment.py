@@ -10,7 +10,7 @@ from commerce.models import Cart, CartItem
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
-from commerce.models import Item, Product
+from commerce.models import Picture, Product
 
 logger = logging.getLogger(__name__)
 

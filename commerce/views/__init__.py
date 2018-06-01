@@ -281,6 +281,16 @@ class ProductListView(View):
                                                   |Q(color__name__icontains=keyword))
             else:
                 products = Product.objects.filter().annotate(n_likes=Count('favoriteproduct'))
+                
+        ps = to_json(products)
+        for p in ps:
+            try:
+                pics = Picture.objects.filter(product_id=p['id'])
+            except:
+                pics = None
+                 
+            if pics:
+                p['pictures'] = to_json(pics) 
 
         #s = []
 #         for product in products:
@@ -298,7 +308,7 @@ class ProductListView(View):
 #             p['like'] = fp.status if fp else False
 
 #             s.append(p)
-        return JsonResponse({'data':to_json(products)})
+        return JsonResponse({'data':ps})
     
 @method_decorator(csrf_exempt, name='dispatch')
 class ProductFilterView(View):
