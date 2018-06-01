@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from commerce.models import Cart, CartItem
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
-from commerce.models import Item, Product
+from commerce.models import Picture, Product
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ class CartView(View):
         for ci in cis:
             c = ci.to_json();
             
-            items = Item.objects.filter(product_id=ci.product.id)
+            items = Picture.objects.filter(product_id=ci.product.id)
             ps = []
             for item in items:
                 ps.append(item.to_json())

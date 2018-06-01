@@ -8,7 +8,7 @@ from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
-from .forms import ItemForm
+# from .forms import ItemForm
 
 logger = logging.getLogger(__name__)
 
