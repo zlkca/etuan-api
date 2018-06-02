@@ -37,6 +37,8 @@ class Restaurant(Model):
     address = ForeignKey(Address, null=True, blank=True, db_column='address_id', on_delete=models.CASCADE)
     categories = ManyToManyField(Category)
     image = ImageField(upload_to=get_restaurant_image_path)
+    lat = DecimalField(max_digits=10, decimal_places=7, null=True)
+    lng = DecimalField(max_digits=10, decimal_places=7, null=True)
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)
     

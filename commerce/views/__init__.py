@@ -20,22 +20,39 @@ logger = logging.getLogger(__name__)
 
 @method_decorator(csrf_exempt, name='dispatch')
 class RestaurantView(View):
-    def getList(self):
+    def getList(self, req):
+        lat = req.GET.get('lat')
+        lng = req.GET.get('lng')
+        max_dist = 5#float(req.GET.get('max_dist'))
         restaurants = []
-        try:
-            restaurants = Restaurant.objects.all()#.annotate(n_products=Count('product'))
-        except Exception as e:
-            logger.error('Get restaurant Exception:%s'%e)
-            return JsonResponse({'data':[]})
         
-        rs = to_json(restaurants)
-        for r in rs:
+        if lat and lng:
+            query = """SELECT *, 
+                (
+                   3959 *
+                   acos(cos(radians(%s)) * 
+                   cos(radians(lat)) * 
+                   cos(radians(lng) - 
+                   radians(%s)) + 
+                   sin(radians(%s)) * 
+                   sin(radians(lat )))
+                ) AS distance 
+                FROM commerce_restaurant 
+                HAVING distance < %s 
+                ORDER BY distance LIMIT 0, 20;"""%(lat, lng, lat, max_dist)
             try:
-                addr = Address.objects.get(id=r['address']['id'])
+                restaurants = Restaurant.objects.raw(query)
             except:
-                addr = None
-            if addr:
-                r['address'] = to_json(addr)
+                return JsonResponse({'data':[]})
+        else:
+            try:
+                restaurants = Restaurant.objects.all()#.annotate(n_products=Count('product'))
+            except Exception as e:
+                logger.error('Get restaurant Exception:%s'%e)
+                return JsonResponse({'data':[]})
+        rs =[]
+        for r in restaurants:
+            rs.append(to_json(r))
         
         return JsonResponse({'data': rs })
     
@@ -61,7 +78,7 @@ class RestaurantView(View):
                 print(e.message);
                 return JsonResponse({'data':''})
         else: # get list
-            return self.getList()#JsonResponse({'data':''})
+            return self.getList(req)#JsonResponse({'data':''})
         
     def delete(self, req, *args, **kwargs):
         pid = int(kwargs.get('id'))
@@ -86,6 +103,9 @@ class RestaurantView(View):
                 
             item.name = params.get('name')
             item.description = params.get('description')
+            item.lat = float(params.get('lat'))
+            item.lng = float(params.get('lng'))
+        
             addr_id = params.get('address_id')
             if(addr_id):
                 addr = Address.objects.get(id=addr_id)
@@ -110,6 +130,7 @@ class RestaurantView(View):
     
     def saveAddress(self, addr1, params):
         addr1.street = params.get('street')
+        addr1.sub_locality = params.get('sub_locality')
         addr1.postal_code = params.get('postal_code')
         addr1.lat = params.get('lat')
         addr1.lng = params.get('lng')

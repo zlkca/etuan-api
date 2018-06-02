@@ -37,8 +37,9 @@ class Address(Model):
     street = CharField(max_length=256, null=True, blank = True)
     unit = CharField(max_length=256, null=True, blank = True)
     postal_code = CharField(max_length=32, null=True, blank = True)
-    province = ForeignKey(Province, null=True, blank=True, db_column='province_id', on_delete=models.CASCADE)
+    sub_locality = CharField(max_length=32, null=True, blank = True)
     city = ForeignKey(City, null=True, blank=True, db_column='city_id', on_delete=models.CASCADE)
+    province = ForeignKey(Province, null=True, blank=True, db_column='province_id', on_delete=models.CASCADE)
     lat = CharField(max_length=32, null=True, blank = True)
     lng = CharField(max_length=32, null=True, blank = True)
     
