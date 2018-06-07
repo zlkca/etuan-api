@@ -66,7 +66,8 @@ def create_jwt_token(obj):
         'data': obj,
         'expiry': str(datetime.utcnow() + timedelta(seconds=settings.JWT["EXPIRY"]))
     }
-    return jwt.encode( payload, settings.JWT["SECRET"], algorithm=settings.JWT["ALGORITHM"])
+    encoded = jwt.encode( payload, settings.JWT["SECRET"], algorithm=settings.JWT["ALGORITHM"])
+    return encoded
 
 def decode_jwt_token(token):
     try:
@@ -75,6 +76,7 @@ def decode_jwt_token(token):
         return None
 
 def get_data_from_token(token):
+    # reading from http header
     if token:
         s = base64.b64decode(token).decode("utf-8").replace('"', '')
         payload = decode_jwt_token(s)

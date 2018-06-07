@@ -32,6 +32,18 @@ DEFAULT_PORTRAIT='assets/portrait.png'
 
 logger = logging.getLogger(__name__)
 
+def save_user(username, email, password, utype, firstname='', lastname='', portrait=''):
+    user = None
+    try:
+        user = get_user_model().objects.create_user(username, email=email, password=password, type=utype)
+        user.first_name=firstname
+        user.last_name=lastname
+        user.type = utype
+        user.portrait = portrait
+        user.save()
+    except Exception as e:
+        logger.error('Create user Exception: %s'%e)
+    return user
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ProvinceView(View):
@@ -141,21 +153,43 @@ class AddressView(View):
         
         item.save()
         return JsonResponse({'data':to_json(item)})
+    
+@method_decorator(csrf_exempt, name='dispatch')
+class SignupView(View):
+    def post(self, req, *args, **kwargs):
+        """ sign up"""
+        user = None
+        d = json.loads(req.body)
+        if d:
+            username = d.get('username')
+            email = d.get('email')
+            password = d.get('password')
+            utype = d.get('type')
+        else:
+            return JsonResponse({'token':'', 'user':''})
 
+        r = None
+        try:
+            r = get_user_model().objects.get(email__iexact=email)
+        except Exception:
+            pass
+        
+        if r:
+            return JsonResponse({'token':'', 'user':''})
+        else: # username, email must have value
+            user = save_user(username, email, password, utype)
+            if user is not None:
+                obj = {'username':username, 'email':email, 'type':utype, 'password':'',
+                       'first_name':'', 'last_name':'', 'portrait':'' }
+                token = create_jwt_token(obj);
+                return JsonResponse({'token':token, 'user':obj})
+            else:
+                return JsonResponse({'token':'', 'user':''})
         
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginView(View):
-    # def get(self, req, *args, **kwargs):
-    #     try:
-    #         items = User.objects.all()
-    #     except Exception as e:
-    #         return JsonResponse({'data':[]})
-    #     return JsonResponse({'data':to_json(items)})
-
-
     def post(self, req, *args, **kwargs):
-        """ login
-        """
+        """ login"""
         d = json.loads(req.body)
         password = None
         r = None
@@ -174,7 +208,7 @@ class LoginView(View):
                 user = authenticate(req, username=r.username, password=password)
                 if user is not None:
                     login(req, user) # make use of django session
-                token = create_jwt_token({'id':r.id, 'username':r.username}).decode('utf-8');
+                token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type}).decode('utf-8');
                 r.password = ''
                 return JsonResponse({'token':token, 'data':to_json(r) })
             else:
