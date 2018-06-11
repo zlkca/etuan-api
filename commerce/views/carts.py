@@ -15,8 +15,6 @@ logger = logging.getLogger(__name__)
 @method_decorator(csrf_exempt, name='dispatch')
 class CartView(View):
     def get(self, req, *args, **kwargs):
-        ''' Get products in cart
-        '''
         try:
             buyer_id = req.GET.get('buyer_id')
         except:

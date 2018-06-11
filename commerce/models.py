@@ -126,10 +126,9 @@ class CartItem(Model):
 
 
 class Order(Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    amount = DecimalField(max_digits=10, decimal_places=3, null=True)
+    user = ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
     status = CharField(max_length=16, default='unpaid')
-    currency = CharField(max_length=16, choices=CURRENCIES, default='usd')
+    currency = CharField(max_length=16, choices=CURRENCIES, default='cad')
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now_add=True)
 
@@ -137,8 +136,7 @@ class Order(Model):
 class OrderItem(Model):
     order = ForeignKey(Order, null = True, blank=True, on_delete=models.CASCADE)
     product = ForeignKey(Product, null=True, blank=True, on_delete=models.CASCADE)
-    created = DateTimeField(auto_now_add=True)
-    updated = DateTimeField(auto_now_add=True)
+    quantity = IntegerField(null=True)
     
 
 class FavoriteProduct(Model):

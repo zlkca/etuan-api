@@ -11,7 +11,7 @@ from django.conf import settings
 from rest_framework_jwt.settings import api_settings
 from django.core.exceptions import ObjectDoesNotExist#EmptyResultSet, MultipleObjectsReturned
 from django.contrib.auth import get_user_model
-from commerce.models import Restaurant, Picture, Product, Category, Style, PriceRange, FavoriteProduct 
+from commerce.models import Restaurant, Picture, Product, Category, Order, OrderItem, Style, PriceRange, FavoriteProduct 
 from account.models import Province, City, Address
 
 from utils import to_json, get_data_from_token
@@ -493,6 +493,33 @@ class ProductView(View):
             i = i + 1
             pic.save()
             
+@method_decorator(csrf_exempt, name='dispatch')
+class OrderView(View):
+    def post(self, req, *args, **kwargs):
+        authorizaion = req.META['HTTP_AUTHORIZATION']
+        token = authorizaion.replace("Bearer ", "")
+        data = get_data_from_token(token)
+        uid = data['id']
+        order = Order()
+        try:
+            user = get_user_model().objects.get(id=uid)
+            order.user = user
+            order.save()
+        except Exception as e:
+            print(e)
+        
+        if order.id:
+            d = json.loads(req.body)
+            items = d.get("items")
+            for item in items:
+                orderItem = OrderItem()
+                orderItem.order = order
+                orderItem.product = Product.objects.get(id=item['pid'])
+                orderItem.quantity = item['quantity']
+                orderItem.save()
+            return JsonResponse({'success': True})
+        return JsonResponse({'success':False})
+    
 @method_decorator(csrf_exempt, name='dispatch')
 class FavoriteProductView(View):
     def get(self, req, *args, **kwargs):
