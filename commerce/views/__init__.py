@@ -495,21 +495,51 @@ class ProductView(View):
             
 @method_decorator(csrf_exempt, name='dispatch')
 class OrderView(View):
+    def getList(self, rid=None):
+        orders = []
+        try:
+            if rid:
+                orders = Order.objects.filter(restaurant_id=rid).order_by('created')
+            else:
+                orders = Order.objects.all().order_by('created')#.annotate(n_products=Count('product'))
+                
+        except Exception as e:
+            logger.error('Get Order Exception:%s'%e)
+            return JsonResponse({'data':[]})
+        return JsonResponse({'data': to_json(orders)})
+
+    def get(self, req, *args, **kwargs):
+        cid = kwargs.get('id')
+        if cid:
+            cid = int(cid)
+            try:
+                item = Order.objects.get(id=cid)
+                return JsonResponse({'data':to_json(item)})
+            except Exception as e:
+                return JsonResponse({'data':''})
+        else:
+            rid = req.GET.get('restaurant_id')
+            return self.getList(rid)
+        
     def post(self, req, *args, **kwargs):
         authorizaion = req.META['HTTP_AUTHORIZATION']
         token = authorizaion.replace("Bearer ", "")
         data = get_data_from_token(token)
         uid = data['id']
+        d = json.loads(req.body)
+        rid = d.get("restaurant_id")
         order = Order()
         try:
+            restaurant = Restaurant.objects.get(id=rid)
             user = get_user_model().objects.get(id=uid)
+            order.restaurant = restaurant
             order.user = user
             order.save()
         except Exception as e:
             print(e)
         
         if order.id:
-            d = json.loads(req.body)
+            
             items = d.get("items")
             for item in items:
                 orderItem = OrderItem()

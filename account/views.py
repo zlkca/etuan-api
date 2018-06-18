@@ -19,6 +19,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
+from commerce.models import Restaurant
 from account.models import Province, City, Address
 from utils import to_json, create_jwt_token, get_data_from_token
 
@@ -208,9 +209,19 @@ class LoginView(View):
                 user = authenticate(req, username=r.username, password=password)
                 if user is not None:
                     login(req, user) # make use of django session
-                token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type}).decode('utf-8');
+                    
+                if r.type == 'business':
+                    restaurant = Restaurant.objects.get(admin_id=r.id)
+                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type, 
+                                              'restaurant_id':restaurant.id}).decode('utf-8');
+                else:
+                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type}).decode('utf-8');
+                    
                 r.password = ''
-                return JsonResponse({'token':token, 'data':to_json(r) })
+                data = to_json(r)
+                if r.type == 'business':
+                    data['restaurant_id'] = restaurant.id 
+                return JsonResponse({'token':token, 'data':data})
             else:
                 return JsonResponse({'token':'', 'data':''})
         else:
@@ -314,22 +325,6 @@ class UserView(View):
 
         return r
 
-    def save_user(self, username, email, password, utype, firstname, lastname, portrait):
-        user = None
-        try:
-            # create_user(self, username, email=None, password=None, **extra_fields)
-            user = get_user_model().objects.create_user(username, email=email, password=password, type=utype)
-            if firstname:
-                user.first_name=firstname
-            if lastname:
-                user.last_name=lastname
-            if portrait:
-                user.portrait = portrait
-            user.save()
-        except Exception as e:
-            logger.error('Create user Exception: %s'%e)
-        return user
-
     def post(self, req, *args, **kwargs):
         """ sign up
         """
@@ -355,7 +350,7 @@ class UserView(View):
         if r:
             return JsonResponse({'token':'', 'user':'', 'errors':[ERR_USER_EXIST]})
         else: # assume username, email alwayse have value
-            user = self.save_user(username, email, password, utype, firstname, lastname, portrait)
+            user = save_user(username, email, password, utype, firstname, lastname, portrait)
             if user is not None:
                 user.password = ''
                 token = create_jwt_token(user);
@@ -373,7 +368,83 @@ class UserView(View):
     #         msg.send()
     #     except Exception as e:
     #         print('send active email error:'+e)
-            
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class InstitutionView(View):
+    def post(self, req, *args, **kwargs):
+        '''Institution sign up'''
+        params = req.POST                 
+        
+        user = None
+        username = params.get('username')
+        email = params.get('email')
+        password = params.get('password')
+        firstname = 'me'#params.get('firstname')
+        lastname = 'me'#params.get('lastname')
+        utype = 'business'#params.get('type')
+        portrait = ''#params.get('portrait')
+        r = None
+        try:
+            r = get_user_model().objects.get(email__iexact=email)
+        except Exception as e:  # models.DoesNotExist:
+            logger.info('%s UserView get user exception:%s'%(datetime.now(), e))
+        if r:
+            return JsonResponse({'token':'', 'user':'', 'errors':[ERR_USER_EXIST]})
+        else: # assume username, email alwayse have value
+            user = save_user(username, email, password, utype, firstname, lastname, portrait)
+            if user is not None:
+                image  = req.FILES.get("image")
+                restaurant = self.createRestaurant(params, image, user)
+                user.password = ''
+                token = create_jwt_token(user);
+                return JsonResponse({'token':token, 'user':user.to_json(), 'errors':[]})
+            else:
+                return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
+        
+    def createRestaurant(self, params, image, user):
+        item = Restaurant()                
+        item.name = params.get('restaurant')
+        item.description = ''#params.get('description')
+        item.lat = float(params.get('lat'))
+        item.lng = float(params.get('lng'))
+        item.admin = user
+        item.address = self.createAddress(params)
+        item.save()
+        if image:        
+            item.image.save(image.name, image.file, True)
+        item.save()
+        #return JsonResponse({'data':to_json(item)})
+        return item
+    
+    def createAddress(self, params):
+        addr = params.get('address')
+        address = Address()
+        address.street = params.get('street')
+        address.sub_locality = params.get('sub_locality')
+        address.postal_code = params.get('postal_code')
+        address.lat = params.get('lat')
+        address.lng = params.get('lng')
+        province = params.get('province')
+        city = params.get('city')
+        try:
+            address.province = Province.objects.get(name=province)
+            address.city = City.objects.get(name=city)
+        except:
+            pass
+        address.save()
+        return address
+
+
+#             if utype == 'business':
+#                 restaurant = d.get('restaurant')
+#                 addr = d.get('address')
+#                 category = d.get('category')
+#                 lat = addr.lat
+#                 lng = addr.lng
+                
+                #self.save_restaurant(restaurant, '', addr, image, lat, lng)
+
 @method_decorator(csrf_exempt, name='dispatch')
 class ProfileView(View):
     def get(self, req, *args, **kwargs):

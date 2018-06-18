@@ -39,6 +39,7 @@ class Restaurant(Model):
     image = ImageField(upload_to=get_restaurant_image_path)
     lat = DecimalField(max_digits=10, decimal_places=7, null=True)
     lng = DecimalField(max_digits=10, decimal_places=7, null=True)
+    admin = ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, db_column='user_id', on_delete=models.CASCADE)
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)
     
@@ -127,6 +128,7 @@ class CartItem(Model):
 
 class Order(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    restaurant = ForeignKey(Restaurant, null=True, blank=True, on_delete=models.CASCADE)
     status = CharField(max_length=16, default='unpaid')
     currency = CharField(max_length=16, choices=CURRENCIES, default='cad')
     created = DateTimeField(auto_now_add=True)
