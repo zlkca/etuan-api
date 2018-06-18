@@ -527,26 +527,30 @@ class OrderView(View):
         data = get_data_from_token(token)
         uid = data['id']
         d = json.loads(req.body)
-        rid = d.get("restaurant_id")
-        order = Order()
-        try:
-            restaurant = Restaurant.objects.get(id=rid)
-            user = get_user_model().objects.get(id=uid)
-            order.restaurant = restaurant
-            order.user = user
-            order.save()
-        except Exception as e:
-            print(e)
-        
-        if order.id:
+        # dict: {'orders': [{'restaurant_id': 2, 'items': [{'pid': 1, 'name': '土豆排骨', 'price': '12.000', 'restaurant_id': 
+        #2, 'quantity': 4}, {'pid': 2, 'name': '泡椒豆腐', 'price': '12.000', 'restaurant_id': 2, 'quantity': 2}]}], 
+        #'user_id': 7}
+        orders = d.get("orders")
+        for data in orders:
+            rid = data['restaurant_id']
+            items = data['items']
+            order = Order()
+            try:
+                restaurant = Restaurant.objects.get(id=rid)
+                user = get_user_model().objects.get(id=uid)
+                order.restaurant = restaurant
+                order.user = user
+                order.save()
+            except Exception as e:
+                print(e)
             
-            items = d.get("items")
-            for item in items:
-                orderItem = OrderItem()
-                orderItem.order = order
-                orderItem.product = Product.objects.get(id=item['pid'])
-                orderItem.quantity = item['quantity']
-                orderItem.save()
+            if order.id:
+                for item in items:
+                    orderItem = OrderItem()
+                    orderItem.order = order
+                    orderItem.product = Product.objects.get(id=item['pid'])
+                    orderItem.quantity = item['quantity']
+                    orderItem.save()
             return JsonResponse({'success': True})
         return JsonResponse({'success':False})
     
