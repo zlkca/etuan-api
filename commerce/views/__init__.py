@@ -504,10 +504,11 @@ class OrderView(View):
                 orders = Order.objects.all().order_by('created')#.annotate(n_products=Count('product'))
             
             r = to_json(orders)
-            for order in r:
-                items = OrderItem.objects.filter(order_id=order['id'])
-                order['items'] = to_json(items)
-                    
+            for order in orders:
+                items = OrderItem.objects.filter(order_id=order.id)
+                ri = next((x for x in r if x['id'] == order.id), None)
+                ri['items'] = to_json(items)
+                ri['user']['username'] = order.user.username                    
         except Exception as e:
             logger.error('Get Order Exception:%s'%e)
             return JsonResponse({'data':[]})
