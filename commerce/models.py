@@ -138,6 +138,8 @@ class Order(Model):
 class OrderItem(Model):
     order = ForeignKey(Order, null = True, blank=True, on_delete=models.CASCADE)
     product = ForeignKey(Product, null=True, blank=True, on_delete=models.CASCADE)
+    product_name = CharField(max_length=255, null=True, blank=True)
+    price = DecimalField(max_digits=10, decimal_places=3, null=True)
     quantity = IntegerField(null=True)
     
 

@@ -502,11 +502,16 @@ class OrderView(View):
                 orders = Order.objects.filter(restaurant_id=rid).order_by('created')
             else:
                 orders = Order.objects.all().order_by('created')#.annotate(n_products=Count('product'))
-                
+            
+            r = to_json(orders)
+            for order in r:
+                items = OrderItem.objects.filter(order_id=order['id'])
+                order['items'] = to_json(items)
+                    
         except Exception as e:
             logger.error('Get Order Exception:%s'%e)
             return JsonResponse({'data':[]})
-        return JsonResponse({'data': to_json(orders)})
+        return JsonResponse({'data': r})
 
     def get(self, req, *args, **kwargs):
         cid = kwargs.get('id')
@@ -550,6 +555,8 @@ class OrderView(View):
                     orderItem.order = order
                     orderItem.product = Product.objects.get(id=item['pid'])
                     orderItem.quantity = item['quantity']
+                    orderItem.product_name = orderItem.product.name
+                    orderItem.price = orderItem.product.price
                     orderItem.save()
             return JsonResponse({'success': True})
         return JsonResponse({'success':False})
