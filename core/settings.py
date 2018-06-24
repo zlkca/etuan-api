@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 cfg = None
 try:
-    f = open(os.path.join(os.path.dirname(BASE_DIR), 'ehetuan.cfg.json'), 'r')
+    f = open(os.path.join(os.path.dirname(BASE_DIR), 'etuan.cfg.json'), 'r')
     cfg = json.load(f)
     f.close()
 except Exception as e:
