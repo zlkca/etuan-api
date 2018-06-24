@@ -18,6 +18,44 @@ from utils import to_json, get_data_from_token
 
 logger = logging.getLogger(__name__)
 
+def saveProduct(params):
+    _id = params.get('id')
+    if _id:
+        item = Product.objects.get(id=_id)
+    else:                    
+        item = Product()
+
+    item.name = params.get('name')
+    item.description = params.get('description')
+    item.price = params.get('price')
+    item.currency = params.get('currency')
+    
+    restaurant_id = params.get('restaurant_id')
+    try:
+        item.restaurant = Restaurant.objects.get(id=restaurant_id)
+    except:
+        item.restaurant = None
+        
+    #item.category = category
+    item.save()
+#     item.categories.clear()
+    # Assume there is only one image
+#     n_pics = int(params.get('n_pictures'))
+#             pictures = []
+#             for i in range(n_pics):
+#                 name = params.get('name%s'%i)
+#                 status = params.get('image_status%s'%i)
+#                 image = req.FILES.get('image%s'%i)
+#                 pictures.append({'index':i,'name':name, 'status':status, 'image':image})
+#                 
+#             self.processPictures(item, pictures)
+#             
+#             # select default picture
+#             pics = Picture.objects.filter(product_id=item.id)
+#             item.fpath = self.getDefaultPicture(pics)
+#             item.save()
+    return item
+    
 @method_decorator(csrf_exempt, name='dispatch')
 class RestaurantView(View):
     def getList(self, req):
@@ -26,6 +64,17 @@ class RestaurantView(View):
         max_dist = 5#float(req.GET.get('max_dist'))
         restaurants = []
         
+        admin_id = req.GET.get('admin_id')
+        if admin_id:
+            try:
+                item = Restaurant.objects.get(admin_id=admin_id)
+                p = to_json(item)
+                p['address'] = self.getAddress(item)
+                return JsonResponse({'data':[p]})
+            except Exception as e:
+                print(e.message);
+                return JsonResponse({'data':[]})
+                
         if lat and lng:
             query = """SELECT *, 
                 (
@@ -67,6 +116,7 @@ class RestaurantView(View):
         
     def get(self, req, *args, **kwargs):
         pid = kwargs.get('id')
+        
         if pid:
             pid = int(pid)
             try:
@@ -258,30 +308,21 @@ class ProductListView(View):
             
         if cats:
             q = Q(categories__id__in=cats.split(','))
-#             kwargs['categories__id__in'] = cats.split(',')
         if restaurants:
             if q:
                 q = q | Q(restaurant__id__in=restaurants.split(','))
             else:
                 q = Q(restaurant__id__in=restaurants.split(','))
-#             kwargs['restaurant__id__in'] = restaurants.split(',')
         if colors:
             if q:
                 q = q | Q(color__id__in=colors.split(','))
             else:
                 q = Q(restaurant__id__in=restaurants.split(','))
-#             kwargs['color__id__in'] = colors.split(',')
 
             
         restaurant_id = req.GET.get('restaurant_id')
         category_id = req.GET.get('category_id')
-        
-#         if keyword:
-#             products = Product.objects.filter(Q(title__icontains=keyword)
-#                                             |Q(description__icontains=keyword)
-#                                             #|Q(restaurant__name__icontains=keyword)
-#                                             |Q(year=keyword)).annotate(n_likes=Count('favoriteproduct'))
-#         
+          
         if restaurant_id:
             products = Product.objects.filter(restaurant_id=restaurant_id).annotate(n_likes=Count('favoriteproduct'))
         elif category_id:
@@ -311,7 +352,7 @@ class ProductListView(View):
                 pics = None
                  
             if pics:
-                p['pictures'] = to_json(pics) 
+                p['pictures'] = to_json(pics)
 
         #s = []
 #         for product in products:
@@ -330,7 +371,22 @@ class ProductListView(View):
 
 #             s.append(p)
         return JsonResponse({'data':ps})
-    
+
+    def post(self, req, *args, **kwargs):
+        authorizaion = req.META['HTTP_AUTHORIZATION']
+        token = authorizaion.replace("Bearer ", "")
+        data = get_data_from_token(token)
+        
+        for key in req.POST:
+            p = json.loads(req.POST[key])
+            product = saveProduct(p)
+            image_status = p.get('image_status')
+            if image_status == 'unchange':
+                pass
+            elif image_status == 'changed':
+                pass
+#         if data and data['username']=='admin':
+   
 @method_decorator(csrf_exempt, name='dispatch')
 class ProductFilterView(View):
     def get(self, req, *args, **kwargs):
@@ -383,27 +439,7 @@ class ProductView(View):
             #     color = Color.objects.get(id=req.POST.get('color_id'))
             # except:
             #     color = None
-            try:
-                restaurant = Restaurant.objects.get(id=req.POST.get('restaurant_id'))
-            except:
-                restaurant = None
-                
-            _id = params.get('id')
-            
-            if _id: # For edit
-                item = Product.objects.get(id=_id)
-            else:                    
-                item = Product()
-
-            item.name = params.get('name')
-            item.description = params.get('description')
-            item.price = params.get('price')
-            item.currency = params.get('currency')
-            # item.color = color
-            item.restaurant = restaurant
-            #item.category = category
-
-            item.save()
+            item = saveProduct(params)
             item.categories.clear()
             
             categories = params.get('categories').split(',')
@@ -531,35 +567,36 @@ class OrderView(View):
         authorizaion = req.META['HTTP_AUTHORIZATION']
         token = authorizaion.replace("Bearer ", "")
         data = get_data_from_token(token)
-        uid = data['id']
-        d = json.loads(req.body)
-        # dict: {'orders': [{'restaurant_id': 2, 'items': [{'pid': 1, 'name': '土豆排骨', 'price': '12.000', 'restaurant_id': 
-        #2, 'quantity': 4}, {'pid': 2, 'name': '泡椒豆腐', 'price': '12.000', 'restaurant_id': 2, 'quantity': 2}]}], 
-        #'user_id': 7}
-        orders = d.get("orders")
-        for data in orders:
-            rid = data['restaurant_id']
-            items = data['items']
-            order = Order()
-            try:
-                restaurant = Restaurant.objects.get(id=rid)
-                user = get_user_model().objects.get(id=uid)
-                order.restaurant = restaurant
-                order.user = user
-                order.save()
-            except Exception as e:
-                print(e)
-            
-            if order.id:
-                for item in items:
-                    orderItem = OrderItem()
-                    orderItem.order = order
-                    orderItem.product = Product.objects.get(id=item['pid'])
-                    orderItem.quantity = item['quantity']
-                    orderItem.product_name = orderItem.product.name
-                    orderItem.price = orderItem.product.price
-                    orderItem.save()
-            return JsonResponse({'success': True})
+        if data:
+            uid = data['id']
+            d = json.loads(req.body)
+            # dict: {'orders': [{'restaurant_id': 2, 'items': [{'pid': 1, 'name': '土豆排骨', 'price': '12.000', 'restaurant_id': 
+            #2, 'quantity': 4}, {'pid': 2, 'name': '泡椒豆腐', 'price': '12.000', 'restaurant_id': 2, 'quantity': 2}]}], 
+            #'user_id': 7}
+            orders = d.get("orders")
+            for data in orders:
+                rid = data['restaurant_id']
+                items = data['items']
+                order = Order()
+                try:
+                    restaurant = Restaurant.objects.get(id=rid)
+                    user = get_user_model().objects.get(id=uid)
+                    order.restaurant = restaurant
+                    order.user = user
+                    order.save()
+                except Exception as e:
+                    print(e)
+                
+                if order.id:
+                    for item in items:
+                        orderItem = OrderItem()
+                        orderItem.order = order
+                        orderItem.product = Product.objects.get(id=item['pid'])
+                        orderItem.quantity = item['quantity']
+                        orderItem.product_name = orderItem.product.name
+                        orderItem.price = orderItem.product.price
+                        orderItem.save()
+                return JsonResponse({'success': True})
         return JsonResponse({'success':False})
     
 @method_decorator(csrf_exempt, name='dispatch')
