@@ -232,7 +232,8 @@ class CategoryView(View):
         return JsonResponse({'data':[]})
     
     def post(self, req, *args, **kwargs):
-        params = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        params = json.loads(ubody)
 
         _id = params.get('id')
         if _id:
@@ -279,6 +280,7 @@ class CategoryView(View):
 #         return JsonResponse({'data':[]})
     
 #     def post(self, req, *args, **kwargs):
+#           ubody = req.body.decode('utf-8')
 #         params = json.loads(req.body)
 
 #         _id = params.get('id')
@@ -569,7 +571,8 @@ class OrderView(View):
         data = get_data_from_token(token)
         if data:
             uid = data['id']
-            d = json.loads(req.body)
+            ubody = req.body.decode('utf-8')
+            d = json.loads(ubody)
             # dict: {'orders': [{'restaurant_id': 2, 'items': [{'pid': 1, 'name': '土豆排骨', 'price': '12.000', 'restaurant_id': 
             #2, 'quantity': 4}, {'pid': 2, 'name': '泡椒豆腐', 'price': '12.000', 'restaurant_id': 2, 'quantity': 2}]}], 
             #'user_id': 7}
@@ -620,7 +623,8 @@ class FavoriteProductView(View):
         return JsonResponse({'favorites':favorites})
     
     def post(self, req, *args, **kwargs):
-        d = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
         uid = d.get("user_id")
         pid = d.get("product_id")
         try:

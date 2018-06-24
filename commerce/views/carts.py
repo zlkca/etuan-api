@@ -83,7 +83,8 @@ class CartView(View):
     def post(self, req, *args, **kwargs):
         ''' Add item to cart, create cart if not exist, only return the product just added
         '''
-        params = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        params = json.loads(ubody)
         buyer_id = params.get('buyer_id')
         product_id = params.get('product_id')
         cart = self.add_product_to_cart(buyer_id, product_id)

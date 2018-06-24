@@ -35,7 +35,8 @@ class PostView(View):
              return JsonResponse({'data':''})
 
     def post(self, req, *args, **kwargs):
-        params = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        params = json.loads(ubody)
         _id = params.get('id')
         if _id:
             item = Post.objects.get(id=_id)
@@ -90,28 +91,29 @@ class CommentView(View):
              return JsonResponse({'data':''})
     
     def post(self, req, *args, **kwargs):
-         params = json.loads(req.body)
-         _id = params.get('id')
-         if _id:
-             item = Comment.objects.get(id=_id)
-         else:
-             item = Comment()
-    
-         item.body = params.get('body')
-         author_id = params.get('author_id')
-         try:
-             item.author = settings.AUTH_USER_MODEL.objects.get(id=author_id)
-         except:
-             item.author = None
-         post_id = params.get('post_id')
-         try:
-             item.post = Post.objects.get(id=post_id)
-         except:
-             item.post = None
-         item.created = params.get('created')
-         item.updated = params.get('updated')
-         item.save()
-         return JsonResponse({'data':to_json(item)})
+        ubody = req.body.decode('utf-8')
+        params = json.loads(ubody)
+        _id = params.get('id')
+        if _id:
+            item = Comment.objects.get(id=_id)
+        else:
+            item = Comment()
+
+        item.body = params.get('body')
+        author_id = params.get('author_id')
+        try:
+            item.author = settings.AUTH_USER_MODEL.objects.get(id=author_id)
+        except:
+            item.author = None
+        post_id = params.get('post_id')
+        try:
+            item.post = Post.objects.get(id=post_id)
+        except:
+            item.post = None
+        item.created = params.get('created')
+        item.updated = params.get('updated')
+        item.save()
+        return JsonResponse({'data':to_json(item)})
 
     def delete(self, req, *args, **kwargs):
          _id = int(kwargs.get('id'))

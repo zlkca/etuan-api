@@ -135,7 +135,8 @@ class AddressView(View):
         return JsonResponse({'data':[]})
     
     def post(self, req, *args, **kwargs):
-        params = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        params = json.loads(ubody)
 
         _id = params.get('id')
         if _id:
@@ -160,7 +161,8 @@ class SignupView(View):
     def post(self, req, *args, **kwargs):
         """ sign up"""
         user = None
-        d = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
         if d:
             username = d.get('username')
             email = d.get('email')
@@ -191,7 +193,8 @@ class SignupView(View):
 class LoginView(View):
     def post(self, req, *args, **kwargs):
         """ login"""
-        d = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
         password = None
         r = None
         
@@ -329,7 +332,8 @@ class UserView(View):
         """ sign up
         """
         user = None
-        d = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
         if d:
             username = d.get('username')
             email = d.get('email')
@@ -463,7 +467,8 @@ class ProfileView(View):
         ''' req.body must have {user_id, description, phone, street, unit, province_id, city_id, portrait}
         '''
         profile = None
-        p = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        p = json.loads(ubody)
         
 #         v = decode_jwt_token(p["token"])
 #         if v is None:
@@ -615,7 +620,8 @@ class ForgetPasswordView(View):
     #------------------------------------
     # Forget password
     def post(self, req):
-        d = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
         from_email = settings.EMAIL_ADDRESS
         if 'email' in d:
             to_email = d['email']
@@ -652,7 +658,8 @@ class ChangePasswordView(View):
     #------------------------------------
     # change password
     def post(self, req, *args, **kwargs):
-        d = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
 
         if 'user_id' in d and 'old_password' in d and 'password' in d:
             try:
@@ -679,7 +686,8 @@ class ChangePasswordView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class ContactUsView(View):
     def post(self, req, *args, **kwargs):
-        d = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
         name=d['name']
         from_email=d['email']
         phone=d['phone']

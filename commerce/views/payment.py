@@ -26,7 +26,8 @@ class PaymentView(View):
     def post(self, req, *args, **kwargs):
         ''' Add item to cart, create cart if not exist, only return the product just added
         '''
-        params = json.loads(req.body)
+        ubody = req.body.decode('utf-8')
+        params = json.loads(ubody)
 
         try:
             # Charge the user's card:
