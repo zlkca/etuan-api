@@ -185,9 +185,9 @@ class SignupView(View):
                 obj = {'username':username, 'email':email, 'type':utype, 'password':'',
                        'first_name':'', 'last_name':'', 'portrait':'' }
                 token = create_jwt_token(obj);
-                return JsonResponse({'token':token, 'user':obj})
+                return JsonResponse({'token':token.decode('utf-8'), 'data':obj})
             else:
-                return JsonResponse({'token':'', 'user':''})
+                return JsonResponse({'token':'', 'data':''})
         
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginView(View):
@@ -399,17 +399,18 @@ class InstitutionView(View):
         if r:
             return JsonResponse({'token':'', 'user':'', 'errors':[ERR_USER_EXIST]})
         else: # assume username, email alwayse have value
-            user = save_user(username, email, password, utype, firstname, lastname, portrait)
-            if user is not None:
-                image  = req.FILES.get("image")
-                restaurant = self.createRestaurant(params, image, user)
-                
-                obj = {'username':username, 'email':email, 'password':'', 'type':utype, 'password':'',
-                       'first_name':'', 'last_name':'', 'portrait':'', 'restaurant_id':restaurant.id }
-                token = create_jwt_token(obj);
-                return JsonResponse({'token':token, 'user':user.to_json(), 'errors':[]})
-            else:
-                return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
+            
+            if params.get('lat') and params.get('lng'):
+                user = save_user(username, email, password, utype, firstname, lastname, portrait)
+                if user is not None:
+                    image  = req.FILES.get("image")
+                    restaurant = self.createRestaurant(params, image, user)
+                    
+                    obj = {'username':username, 'email':email, 'password':'', 'type':utype, 'password':'',
+                           'first_name':'', 'last_name':'', 'portrait':'', 'restaurant_id':restaurant.id }
+                    token = create_jwt_token(obj);
+                    return JsonResponse({'token':token, 'user':user.to_json(), 'errors':[]})
+            return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
         
     def createRestaurant(self, params, image, user):
         item = Restaurant()                
