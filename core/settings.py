@@ -28,6 +28,7 @@ APP_DOMAIN = cfg["APP_DOMAIN"]
 API_DOMAIN = cfg["API_DOMAIN"]
 API_PORT = str(cfg['API_PORT'])
 APP_PORT = str(cfg["APP_SERVER"]["PORT"])
+ADMIN_PORT = str(cfg["ADMIN_PORT"])
 
 if cfg['ENV'] == 'production':
     APP_DOMAIN_ALIAS = 'www.' + APP_DOMAIN

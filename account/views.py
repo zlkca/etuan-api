@@ -357,7 +357,9 @@ class UserView(View):
             user = save_user(username, email, password, utype, firstname, lastname, portrait)
             if user is not None:
                 user.password = ''
-                token = create_jwt_token(user);
+                obj = {'username':username, 'email':email, 'type':utype, 'password':'',
+                       'first_name':'', 'last_name':'', 'portrait':'' }
+                token = create_jwt_token(obj);
                 return JsonResponse({'token':token, 'user':user.to_json(), 'errors':[]})
             else:
                 return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
@@ -391,8 +393,9 @@ class InstitutionView(View):
         r = None
         try:
             r = get_user_model().objects.get(email__iexact=email)
-        except Exception as e:  # models.DoesNotExist:
-            logger.info('%s UserView get user exception:%s'%(datetime.now(), e))
+        except Exception:  # models.DoesNotExist:
+            pass
+        
         if r:
             return JsonResponse({'token':'', 'user':'', 'errors':[ERR_USER_EXIST]})
         else: # assume username, email alwayse have value
@@ -400,8 +403,10 @@ class InstitutionView(View):
             if user is not None:
                 image  = req.FILES.get("image")
                 restaurant = self.createRestaurant(params, image, user)
-                user.password = ''
-                token = create_jwt_token(user);
+                
+                obj = {'username':username, 'email':email, 'password':'', 'type':utype, 'password':'',
+                       'first_name':'', 'last_name':'', 'portrait':'', 'restaurant_id':restaurant.id }
+                token = create_jwt_token(obj);
                 return JsonResponse({'token':token, 'user':user.to_json(), 'errors':[]})
             else:
                 return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
