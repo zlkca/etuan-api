@@ -185,7 +185,7 @@ class SignupView(View):
                 obj = {'username':username, 'email':email, 'type':utype, 'password':'',
                        'first_name':'', 'last_name':'', 'portrait':'' }
                 token = create_jwt_token(obj);
-                return JsonResponse({'token':token.decode('utf-8'), 'data':obj})
+                return JsonResponse({'token':token, 'data':obj})
             else:
                 return JsonResponse({'token':'', 'data':''})
         
@@ -409,7 +409,7 @@ class InstitutionView(View):
                     obj = {'username':username, 'email':email, 'password':'', 'type':utype, 'password':'',
                            'first_name':'', 'last_name':'', 'portrait':'', 'restaurant_id':restaurant.id }
                     token = create_jwt_token(obj);
-                    return JsonResponse({'token':token, 'user':user.to_json(), 'errors':[]})
+                    return JsonResponse({'token':token, 'user':to_json(user), 'errors':[]})
             return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
         
     def createRestaurant(self, params, image, user):

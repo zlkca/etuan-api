@@ -67,7 +67,7 @@ def create_jwt_token(obj):
         'expiry': str(datetime.utcnow() + timedelta(seconds=settings.JWT["EXPIRY"]))
     }
     encoded = jwt.encode( payload, settings.JWT["SECRET"], algorithm=settings.JWT["ALGORITHM"])
-    return encoded
+    return encoded.decode('utf-8')
 
 def decode_jwt_token(token):
     try:
