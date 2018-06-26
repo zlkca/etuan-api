@@ -427,20 +427,19 @@ class InstitutionView(View):
         return item
     
     def createAddress(self, params):
-        addr = params.get('address')
         address = Address()
         address.street = params.get('street')
         address.sub_locality = params.get('sub_locality')
         address.postal_code = params.get('postal_code')
         address.lat = params.get('lat')
         address.lng = params.get('lng')
-        province = params.get('province')
-        city = params.get('city')
-        try:
-            address.province = Province.objects.get(name=province)
-            address.city = City.objects.get(name=city)
-        except:
-            pass
+        address.province = params.get('province')
+        address.city = params.get('city')
+#         try:
+#             address.province = Province.objects.get(name=province)
+#             address.city = City.objects.get(name=city)
+#         except:
+#             pass
         address.save()
         return address
 
