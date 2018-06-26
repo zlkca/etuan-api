@@ -215,10 +215,9 @@ class LoginView(View):
                     
                 if r.type == 'business':
                     restaurant = Restaurant.objects.get(admin_id=r.id)
-                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type, 
-                                              'restaurant_id':restaurant.id}).decode('utf-8');
+                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type,'restaurant_id':restaurant.id});
                 else:
-                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type}).decode('utf-8');
+                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type});
                     
                 r.password = ''
                 data = to_json(r)
@@ -360,7 +359,7 @@ class UserView(View):
                 obj = {'username':username, 'email':email, 'type':utype, 'password':'',
                        'first_name':'', 'last_name':'', 'portrait':'' }
                 token = create_jwt_token(obj);
-                return JsonResponse({'token':token, 'user':user.to_json(), 'errors':[]})
+                return JsonResponse({'token':token, 'user':to_json(user), 'errors':[]})
             else:
                 return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
 
