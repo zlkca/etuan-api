@@ -42,9 +42,7 @@ class Address(Model):
     province = CharField(max_length=32, null=True, blank = True)#ForeignKey(Province, null=True, blank=True, db_column='province_id', on_delete=models.CASCADE)
     lat = CharField(max_length=32, null=True, blank = True)
     lng = CharField(max_length=32, null=True, blank = True)
-    
-    def __str__(self):
-        return self.unit + " " + self.street + ", " + self.postal_code
+
             
 class User(AbstractUser):
     """ type --- 'guest', 'member', 'admin'

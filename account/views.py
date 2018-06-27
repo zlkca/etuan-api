@@ -4,19 +4,15 @@ from __future__ import unicode_literals
 import json
 import os
 import logging
-import base64
 
 from datetime import datetime
-
 from django.core.mail import send_mail, EmailMultiAlternatives
-from django.core.exceptions import ObjectDoesNotExist#EmptyResultSet, MultipleObjectsReturned
 from django.http import JsonResponse
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, get_user_model
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-from django.contrib.auth import get_user_model
 from django.conf import settings
 
 from commerce.models import Restaurant
@@ -46,60 +42,12 @@ def save_user(username, email, password, utype, firstname='', lastname='', portr
         logger.error('Create user Exception: %s'%e)
     return user
 
-@method_decorator(csrf_exempt, name='dispatch')
-class ProvinceView(View):
-    def getList(self):
-        ps = []
-        try:
-            ps = Province.objects.all()#.annotate(n_products=Count('product'))
-        except Exception as e:
-            logger.error('Get provinces Exception:%s'%e)
-            return JsonResponse({'data':[]})
-        return JsonResponse({'data': to_json(ps)})
-    
-    def get(self, req, *args, **kwargs):
-        pid = req.GET.get('id')
-        if pid:
-            pid = int(pid)
-            try:
-                item = Province.objects.get(id=pid)
-                return JsonResponse({'data':to_json(item)})
-            except Exception as e:
-                print(e.message);
-                return JsonResponse({'data':''})
-        else:
-            return self.getList()
-
-@method_decorator(csrf_exempt, name='dispatch')
-class CityView(View):
-    def getList(self, province_id=None):
-        cs = []
-        
-        try:
-            if province_id:
-                cs = City.objects.filter(province_id=province_id)
-            else:
-                cs = City.objects.all()#.annotate(n_products=Count('product'))
-        except Exception as e:
-            logger.error('Get address Exception:%s'%e)
-            return JsonResponse({'data':[]})
-        return JsonResponse({'data': to_json(cs)})
-    
-    def get(self, req, *args, **kwargs):
-        pid = req.GET.get('province_id')
-        cid = req.GET.get('id')
-        if cid:
-            cid = int(cid)
-            try:
-                item = City.objects.get(id=cid)
-                return JsonResponse({'data':to_json(item)})
-            except Exception as e:
-                print(e.message);
-                return JsonResponse({'data':''})
-        elif pid:
-            return self.getList(pid)
-        else:
-            return self.getList()
+def find_user(account):
+    # both user name and email must be unique
+    try:
+        return get_user_model().objects.get(Q(username__iexact=account) | Q(email__iexact=account))
+    except Exception:
+        return None
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddressView(View):
@@ -115,12 +63,10 @@ class AddressView(View):
     def get(self, req, *args, **kwargs):
         pid = kwargs.get('id')
         if pid:
-            pid = int(pid)
             try:
-                item = Address.objects.get(id=pid)
+                item = Address.objects.get(id=int(pid))
                 return JsonResponse({'data':to_json(item)})
             except Exception as e:
-                print(e.message);
                 return JsonResponse({'data':''})
         else:
             return self.getList()
@@ -137,7 +83,6 @@ class AddressView(View):
     def post(self, req, *args, **kwargs):
         ubody = req.body.decode('utf-8')
         params = json.loads(ubody)
-
         _id = params.get('id')
         if _id:
             item = Address.objects.get(id=_id)
@@ -145,14 +90,8 @@ class AddressView(View):
             item = Address()
             
         item.street = params.get('street')
-        province_id = params.get('province_id')
-        city_id = params.get('city_id')
-        try:
-            item.province = Province.objects.get(id=province_id)
-            item.city = City.objects.get(id=city_id)
-        except Exception as e:
-            print(e.message)
-        
+        item.province = params.get('province')
+        item.city = params.get('city')
         item.save()
         return JsonResponse({'data':to_json(item)})
     
@@ -170,16 +109,10 @@ class SignupView(View):
             utype = d.get('type')
         else:
             return JsonResponse({'token':'', 'user':''})
-
-        r = None
-        try:
-            r = get_user_model().objects.get(email__iexact=email)
-        except Exception:
-            pass
         
-        if r:
+        if find_user(email) or find_user(username):
             return JsonResponse({'token':'', 'user':''})
-        else: # username, email must have value
+        else: # username, email cannot be empty
             user = save_user(username, email, password, utype)
             if user is not None:
                 obj = {'username':username, 'email':email, 'type':utype, 'password':'',
@@ -195,39 +128,30 @@ class LoginView(View):
         """ login"""
         ubody = req.body.decode('utf-8')
         d = json.loads(ubody)
-        password = None
-        r = None
-        
         if d:
             password = d.get('password')
             account = d.get('account')
-
-        if account and password:
-            try:
-                r = get_user_model().objects.get(Q(username__iexact=account) | Q(email__iexact=account))
-            except Exception as e:  # models.DoesNotExist:
-                logger.error('%s LoginView get user exception:%s'%(datetime.now(), e))
-        
-            if r and r.check_password(password):
-                user = authenticate(req, username=r.username, password=password)
-                if user is not None:
-                    login(req, user) # make use of django session
-                    
-                if r.type == 'business':
-                    restaurant = Restaurant.objects.get(admin_id=r.id)
-                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type,'restaurant_id':restaurant.id});
+            if account and password:
+                r = find_user(account)
+                if r and r.check_password(password):
+                    user = authenticate(req, username=r.username, password=password)
+                    if user is not None:
+                        login(req, user) # make use of django session
+                        
+                    if r.type == 'business':
+                        restaurant = Restaurant.objects.get(admin_id=r.id)
+                        token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type,'restaurant_id':restaurant.id});
+                    else:
+                        token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type});
+                        
+                    r.password = ''
+                    data = to_json(r)
+                    if r.type == 'business':
+                        data['restaurant_id'] = restaurant.id 
+                    return JsonResponse({'token':token, 'data':data})
                 else:
-                    token = create_jwt_token({'id':r.id, 'username':r.username, 'type':r.type});
-                    
-                r.password = ''
-                data = to_json(r)
-                if r.type == 'business':
-                    data['restaurant_id'] = restaurant.id 
-                return JsonResponse({'token':token, 'data':data})
-            else:
-                return JsonResponse({'token':'', 'data':''})
-        else:
-            return JsonResponse({'token':'', 'data':''})
+                    return JsonResponse({'token':'', 'data':''})
+        return JsonResponse({'token':'', 'data':''})
 
 @method_decorator(csrf_exempt, name='dispatch')
 class TokenView(View):
@@ -282,98 +206,6 @@ class UserFormView(View):
                 return JsonResponse({'data':to_json(user)})
         return JsonResponse({'data':''})
                 
-@method_decorator(csrf_exempt, name='dispatch')
-class UserView(View):
-    # def get(self, req, *args, **kwargs):
-    #     """ Find user by email
-    #     """
-    #     email = req.GET.get('email')
-    #     users = None
-    #     s = []
-    #     if email:
-    #         try:
-    #             users = get_user_model().objects.filter(email__iexact=email)
-    #         except Exception as e:
-    #             logger.error('%s UserView get user exception:%s'%(datetime.now(), e))
-
-    #         if users:
-    #             for user in users:
-    #                 s.append(user.to_json())
-    #         return JsonResponse({'users':s})
-    #     else:
-    #         return JsonResponse({'users':[]})
-
-    def get_user(self, d):
-        """  Find user by query object
-                d --- json object { source, email, username }
-        """
-        r = None
-        _id = d.get('id')
-        source = d.get('source')
-        username = d.get('username')
-        email = d.get('email')
-
-        if id:
-            try:
-                r = get_user_model().objects.get(id=_id)
-            except Exception as e:  # models.DoesNotExist:
-                logger.info('%s UserView get user exception:%s'%(datetime.now(), e))
-            return r
-
-        try:
-            r = get_user_model().objects.get(Q(username__iexact=username) | Q(email__iexact=email) & Q(source_iexact=source))
-        except Exception as e:  # models.DoesNotExist:
-            logger.info('%s UserView get user exception:%s'%(datetime.now(), e))
-
-        return r
-
-    def post(self, req, *args, **kwargs):
-        """ sign up
-        """
-        user = None
-        ubody = req.body.decode('utf-8')
-        d = json.loads(ubody)
-        if d:
-            username = d.get('username')
-            email = d.get('email')
-            password = d.get('password')
-            firstname = d.get('firstname')
-            lastname = d.get('lastname')
-            utype = d.get('type')
-            portrait = d.get('portrait')
-        else:
-            return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
-
-        r = None
-        try:
-            r = get_user_model().objects.get(email__iexact=email)
-        except Exception as e:  # models.DoesNotExist:
-            logger.info('%s UserView get user exception:%s'%(datetime.now(), e))
-
-        if r:
-            return JsonResponse({'token':'', 'user':'', 'errors':[ERR_USER_EXIST]})
-        else: # assume username, email alwayse have value
-            user = save_user(username, email, password, utype, firstname, lastname, portrait)
-            if user is not None:
-                user.password = ''
-                obj = {'username':username, 'email':email, 'type':utype, 'password':'',
-                       'first_name':'', 'last_name':'', 'portrait':'' }
-                token = create_jwt_token(obj);
-                return JsonResponse({'token':token, 'user':to_json(user), 'errors':[]})
-            else:
-                return JsonResponse({'token':'', 'user':'', 'errors':[ERR_SAVE_USER_EXCEPTION]})
-
-    # def send_active_email(self, token, to_email):
-    #     try:
-    #         subject, from_email = settings.ACTIVE_EMAIL_SUBJECT, settings.EMAIL_ADDRESS
-    #         text_content = 'Thank you for creating a new account. Please click on the link to active your account.'
-    #         html_content = '<p>谢谢您注册像罔。请点击链接激活您的账号：<a href="'+settings.WEB_URL+'/#/activeAccount?token='+token+'">http://yocomput.com/active=IW3454HEUU34JUE84774HR74H83H3H</a></p>'
-    #         msg = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
-    #         msg.attach_alternative(html_content, "text/html")
-    #         msg.send()
-    #     except Exception as e:
-    #         print('send active email error:'+e)
-
 
 @method_decorator(csrf_exempt, name='dispatch')
 class InstitutionView(View):
@@ -717,3 +549,4 @@ class ContactUsView(View):
         except Exception as e:
             logger.error('Failed to send email: '+ str(e))
             return JsonResponse({'send':''})
+
