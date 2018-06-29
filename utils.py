@@ -16,28 +16,28 @@ def obj_to_json(d, related_lookup=False):
     if d and d._meta:
         fields = d._meta.get_fields()
         for field in fields:
-            key = field.name
+            field_name = field.name
             #print(type(field))
-            if hasattr(d, key):
-                v = getattr(d, key)
-                if isinstance(field, ManyToOneRel) or key=='password': 
+            if hasattr(d, field_name):
+                v = getattr(d, field_name)
+                if isinstance(field, ManyToOneRel) or field_name=='password': 
                     pass
                 if isinstance(field, ManyToManyField):
-                    item[key] = to_json(v.all())
+                    item[field_name] = to_json(v.all())
                 elif isinstance(field, ForeignKey):
                     if related_lookup:
-                        item[key] = obj_to_json(v)
+                        item[field_name] = obj_to_json(v)
                     else:
                         if v and v.id:
-                            item[key] = {'id': v.id }
+                            item[field_name] = {'id': v.id }
                 elif isinstance(field, ImageField):
                     #item[key] = v.name if v else None
                     if v and v.name:
-                        item[key] = { 'data':v.name, 'file':'' }
+                        item[field_name] = { 'data':v.name, 'file':'' }
                     else:
-                        item[key] = { 'data':'', 'file':'' }
+                        item[field_name] = { 'data':'', 'file':'' }
                 else:
-                    item[key] = v
+                    item[field_name] = v
     #     # version 1
     #     for k in d.__dict__.keys():
     #         if not '__' in k and not k.startswith('_'):

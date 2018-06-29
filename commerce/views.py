@@ -141,37 +141,37 @@ class RestaurantView(View):
         authorizaion = req.META['HTTP_AUTHORIZATION']
         token = authorizaion.replace("Bearer ", "")
         data = get_data_from_token(token)
-        if data and data['username']=='admin':
-            _id = params.get('id')
-            if _id:
-                item = Restaurant.objects.get(id=_id)
-            else:                    
-                item = Restaurant()
-                
-            item.name = params.get('name')
-            item.description = params.get('description')
-            item.lat = float(params.get('lat'))
-            item.lng = float(params.get('lng'))
-        
-            addr_id = params.get('address_id')
-            if(addr_id):
-                addr = Address.objects.get(id=addr_id)
-                self.saveAddress(addr, params)
-                item.address = addr
-            else:
-                addr = Address()
-                self.saveAddress(addr, params)
-                item.address = addr
+#         if data and data['username']=='admin':
+        _id = params.get('id')
+        if _id:
+            item = Restaurant.objects.get(id=_id)
+        else:                    
+            item = Restaurant()
+            
+        item.name = params.get('name')
+        item.description = params.get('description')
+        item.lat = float(params.get('lat'))
+        item.lng = float(params.get('lng'))
+    
+        addr_id = params.get('address_id')
+        if(addr_id):
+            addr = Address.objects.get(id=addr_id)
+            self.saveAddress(addr, params)
+            item.address = addr
+        else:
+            addr = Address()
+            self.saveAddress(addr, params)
+            item.address = addr
+        item.save()
+    
+        image_status = params.get('image_status')
+        if image_status == 'changed':
+            self.rmPicture(item)
+            image  = req.FILES.get("image")
+            item.image.save(image.name, image.file, True)
             item.save()
         
-            image_status = params.get('image_status')
-            if image_status == 'changed':
-                self.rmPicture(item)
-                image  = req.FILES.get("image")
-                item.image.save(image.name, image.file, True)
-                item.save()
-            
-            return JsonResponse({'data':to_json(item)})
+        return JsonResponse({'data':to_json(item)})
     
     def saveAddress(self, addr1, params):
         addr1.street = params.get('street')
