@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-
+from datetime import datetime
 from django.db.models import Q,Count
 from django.http import JsonResponse
 from django.views.generic import View
@@ -152,7 +152,7 @@ class RestaurantView(View):
         item.description = params.get('description')
         item.lat = float(params.get('lat'))
         item.lng = float(params.get('lng'))
-    
+        item.created = item.created if item.created else datetime.now()
         addr_id = params.get('address_id')
         if(addr_id):
             addr = Address.objects.get(id=addr_id)
