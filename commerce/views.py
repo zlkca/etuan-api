@@ -18,6 +18,67 @@ from utils import to_json, get_data_from_token
 
 logger = logging.getLogger(__name__)
 
+def processPictures(product, pictures):
+    # pid --- product id
+    # pictures --- dict that pass from the front end
+    reindex = False
+    pic = None
+    for picture in pictures:            
+        try:
+            pic = Picture.objects.get(product_id=product.id, index=picture['index'])
+        except:
+            pic = None
+        
+        if pic:
+            if picture['status'] == 'removed':
+                reindex = True
+                rmPicture(pic)
+            elif picture['status'] == 'changed':
+                savePicture(product, pic, picture)
+                pic.save()
+        else:# new
+            pic = Picture()
+            savePicture(product, pic, picture)
+    
+    if reindex:
+        reindexPicture(product.id)
+    
+def savePicture(product, pic, picture):
+    # product --- Product model object
+    # pic --- Picture model object
+    # picture --- dict from front end
+    pic.index = picture['index']
+    pic.name = picture['name']
+    pic.product = product
+    pic.image.save(picture['image'].name, picture['image'].file, True)
+    pic.save()
+                
+def getDefaultPicture(pictures):
+    if pictures.count() == 0:
+        return ''
+    else:
+        if pictures.count()>0 and pictures[0].image.name:
+            return pictures[0].image.name
+        else:
+            return ''
+
+def rmPicture(pic):
+    try:
+        os.remove(pic.image.path)
+    except:
+        print('remove image failed')
+    pic.image.delete()
+    pic.delete()
+
+def reindexPicture(pid):
+    # pid --- product id
+    pics = Picture.objects.filter(product_id=pid).order_by('index')
+    i = 0
+    for pic in pics:   
+        pic.index = i
+        i = i + 1
+        pic.save()
+        
 def saveProduct(params):
     _id = params.get('id')
     if _id:
@@ -324,14 +385,24 @@ class ProductListView(View):
         data = get_data_from_token(token)
         
         for key in req.POST:
-            p = json.loads(req.POST[key])
-            product = saveProduct(p)
-            image_status = p.get('image_status')
+            params = json.loads(req.POST[key])
+            index = int(key.replace('info_', ''))
+            product = saveProduct(params)
+            image_status = params.get('image_status')
             if image_status == 'unchange':
                 pass
-            elif image_status == 'changed':
-                pass
-#         if data and data['username']=='admin':
+            elif image_status == 'changed' or image_status == 'add':
+                pictures = []
+                image = req.FILES.get('image%s'%index)
+                pictures.append({'index':0,'name':'', 'status':image_status, 'image':image})
+                processPictures(product, pictures)
+                
+                # select default picture
+                pics = Picture.objects.filter(product_id=product.id)
+                product.fpath = getDefaultPicture(pics)
+                product.save()
+                
+        return JsonResponse({'data':[]})
    
 @method_decorator(csrf_exempt, name='dispatch')
 class ProductFilterView(View):
@@ -379,12 +450,7 @@ class ProductView(View):
         authorizaion = req.META['HTTP_AUTHORIZATION']
         token = authorizaion.replace("Bearer ", "")
         data = get_data_from_token(token)
-        if data and data['username']=='admin':
-            
-            # try:
-            #     color = Color.objects.get(id=req.POST.get('color_id'))
-            # except:
-            #     color = None
+        if data and data['username']=='admin' or data['utype']=='business':
             item = saveProduct(params)
             item.categories.clear()
             
@@ -404,7 +470,7 @@ class ProductView(View):
                 image = req.FILES.get('image%s'%i)
                 pictures.append({'index':i,'name':name, 'status':status, 'image':image})
                 
-            self.processPictures(item, pictures)
+            processPictures(item, pictures)
             
             # select default picture
             pics = Picture.objects.filter(product_id=item.id)
@@ -414,66 +480,6 @@ class ProductView(View):
             return JsonResponse({'tokenValid': True,'data':to_json(item)})
         return JsonResponse({'tokenValid':False, 'data':''})
 
-    def processPictures(self, product, pictures):
-        # pid --- product id
-        # pictures --- dict that pass from the front end
-        reindex = False
-        pic = None
-        for picture in pictures:            
-            try:
-                pic = Picture.objects.get(product_id=product.id, index=picture['index'])
-            except:
-                pic = None
-            
-            if pic:
-                if picture['status'] == 'removed':
-                    reindex = True
-                    self.rmPicture(pic)
-                elif picture['status'] == 'changed':
-                    self.savePicture(product, pic, picture)
-                    pic.save()
-            else:# new
-                pic = Picture()
-                self.savePicture(product, pic, picture)
-        
-        if reindex:
-            self.reindexPicture(product.id)
-    
-    def savePicture(self, product, pic, picture):
-        # product --- Product model object
-        # pic --- Picture model object
-        # picture --- dict from front end
-        pic.index = picture['index']
-        pic.name = picture['name']
-        pic.product = product
-        pic.image.save(picture['image'].name, picture['image'].file, True)
-        pic.save()
-                    
-    def getDefaultPicture(self, pictures):
-        if pictures.count() == 0:
-            return ''
-        else:
-            if pictures.count()>0 and pictures[0].image.name:
-                return pictures[0].image.name
-            else:
-                return ''
-
-    def rmPicture(self, pic):
-        try:
-            os.remove(pic.image.path)
-        except:
-            print('remove image failed')
-        pic.image.delete()
-        pic.delete()
-    
-    def reindexPicture(self, pid):
-        # pid --- product id
-        pics = Picture.objects.filter(product_id=pid).order_by('index')
-        i = 0
-        for pic in pics:   
-            pic.index = i
-            i = i + 1
-            pic.save()
             
 @method_decorator(csrf_exempt, name='dispatch')
 class OrderView(View):
