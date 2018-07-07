@@ -174,19 +174,31 @@ class TokenView(View):
             return JsonResponse({'data':''})
             
 @method_decorator(csrf_exempt, name='dispatch')
-class UserListView(View):
+class UserView(View):
+    
+    def getList(self, req):
+        utype = req.GET.get('type')
+        users = []
+        try:
+            if utype:
+                users = get_user_model().objects.filter(type=utype)
+            else:
+                users = []#get_user_model().objects.all().order_by('created')#.annotate(n_products=Count('product'))
+            
+        except Exception:
+            return JsonResponse({'data':[]})
+        
+        a = []
+        for user in users:
+            a.append({'id':user.id, 'username':user.username, 'email':user.email, 'password':''})
+        return JsonResponse({'data': a})
+
     def get(self, req, *args, **kwargs):
         authorizaion = req.META['HTTP_AUTHORIZATION']
         token = authorizaion.replace("Bearer ", "")
         data = get_data_from_token(token)
         if data:
-            users = []
-            try:
-                users = get_user_model().objects.all()
-            except Exception as e:
-                logger.error('%s UserView get exception:%s'%(datetime.now(), e))
-    
-            return JsonResponse({'data':to_json(users)})
+            return self.getList(req)
         else:
             return JsonResponse({'data':''})
         

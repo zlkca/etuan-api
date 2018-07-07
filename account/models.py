@@ -45,7 +45,7 @@ class Address(Model):
 
             
 class User(AbstractUser):
-    """ type --- 'guest', 'member', 'admin'
+    """ type --- 'user', 'business', 'super'
     """
     username_validator = UnicodeUsernameValidator()
     username = models.CharField(
