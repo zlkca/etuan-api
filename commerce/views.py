@@ -462,19 +462,19 @@ class ProductView(View):
                     category = None
                 item.categories.add(category)
             
-            n_pics = int(params.get('n_pictures'))
-            pictures = []
-            for i in range(n_pics):
-                name = params.get('name%s'%i)
-                status = params.get('image_status%s'%i)
-                image = req.FILES.get('image%s'%i)
-                pictures.append({'index':i,'name':name, 'status':status, 'image':image})
-                
-            processPictures(item, pictures)
-            
-            # select default picture
-            pics = Picture.objects.filter(product_id=item.id)
-            item.fpath = self.getDefaultPicture(pics)
+#             n_pics = int(params.get('n_pictures'))
+#             pictures = []
+#             for i in range(n_pics):
+#                 name = params.get('name%s'%i)
+#                 status = params.get('image_status%s'%i)
+#                 image = req.FILES.get('image%s'%i)
+#                 pictures.append({'index':i,'name':name, 'status':status, 'image':image})
+#                 
+#             processPictures(item, pictures)
+#             
+#             # select default picture
+#             pics = Picture.objects.filter(product_id=item.id)
+#             item.fpath = self.getDefaultPicture(pics)
             item.save()
 
             return JsonResponse({'tokenValid': True,'data':to_json(item)})
