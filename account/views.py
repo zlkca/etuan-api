@@ -29,18 +29,27 @@ DEFAULT_PORTRAIT='assets/portrait.png'
 
 logger = logging.getLogger(__name__)
 
-def save_user(username, email, password, utype, firstname='', lastname='', portrait=''):
+def save_user(id, username, email, password, utype, firstname='', lastname='', portrait=''):
     user = None
-    try:
-        user = get_user_model().objects.create_user(username, email=email, password=password, type=utype)
+    
+    if id:
+        user = get_user_model().objects.get(id=id)
         user.first_name=firstname
         user.last_name=lastname
         user.type = utype
         user.portrait = portrait
         user.save()
-    except Exception as e:
-        logger.error('Create user Exception: %s'%e)
-    return user
+    else:
+        try:
+            user = get_user_model().objects.create_user(username, email=email, password=password, type=utype)
+            user.first_name=firstname
+            user.last_name=lastname
+            user.type = utype
+            user.portrait = portrait
+            user.save()
+        except Exception as e:
+            logger.error('Create user Exception: %s'%e)
+        return user
 
 def find_user(account):
     # both user name and email must be unique
@@ -113,7 +122,7 @@ class SignupView(View):
         if find_user(email) or find_user(username):
             return JsonResponse({'token':'', 'user':''})
         else: # username, email cannot be empty
-            user = save_user(username, email, password, utype)
+            user = save_user(None, username, email, password, utype)
             if user is not None:
                 obj = {'username':username, 'email':email, 'type':utype, 'password':'',
                        'first_name':'', 'last_name':'', 'portrait':'' }
@@ -198,10 +207,52 @@ class UserView(View):
         token = authorizaion.replace("Bearer ", "")
         data = get_data_from_token(token)
         if data:
-            return self.getList(req)
+            uid = int(kwargs.get('id')) if kwargs.get('id') else None
+            if uid:
+                user = get_user_model().objects.get(id=uid)
+                if user is not None:
+                    obj = {'username':user.username, 'email':user.email, 'type':user.type, 'password':user.password,
+                           'first_name':'', 'last_name':'', 'portrait':'' }
+                    token = create_jwt_token(obj);
+                    return JsonResponse({'token':token, 'data':obj})
+                else:
+                    return JsonResponse({'token':'', 'data':''})
+            else:
+                return self.getList(req)
         else:
             return JsonResponse({'data':''})
+
+    def post(self, req, *args, **kwargs):
+        """ save or updata user"""
+        user = None
+        ubody = req.body.decode('utf-8')
+        d = json.loads(ubody)
+
+        if d:
+            id = d.get("id")
+            username = d.get('username')
+            email = d.get('email')
+            password = d.get('password')
+            utype = d.get('type')
+        else:
+            return JsonResponse({'token':'', 'user':''})
         
+        if id:
+            user = get_user_model().objects.get(id=id)
+        else:
+            if find_user(email) or find_user(username):
+                return JsonResponse({'token':'', 'user':''})
+            else: # username, email cannot be empty
+                user = save_user(None, username, email, password, utype)
+                
+        if user is not None:
+            obj = {'username':username, 'email':email, 'type':utype, 'password':'',
+                   'first_name':'', 'last_name':'', 'portrait':'' }
+            token = create_jwt_token(obj);
+            return JsonResponse({'token':token, 'data':obj})
+        else:
+            return JsonResponse({'token':'', 'data':''})
+                    
 @method_decorator(csrf_exempt, name='dispatch')
 class UserFormView(View):
     def get(self, req, *args, **kwargs):
@@ -244,7 +295,7 @@ class InstitutionView(View):
         else: # assume username, email alwayse have value
             
             if params.get('lat') and params.get('lng'):
-                user = save_user(username, email, password, utype, firstname, lastname, portrait)
+                user = save_user(None, username, email, password, utype, firstname, lastname, portrait)
                 if user is not None:
                     image  = req.FILES.get("image")
                     restaurant = self.createRestaurant(params, image, user)
