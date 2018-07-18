@@ -34,22 +34,33 @@ def save_user(id, username, email, password, utype, firstname='', lastname='', p
     
     if id:
         user = get_user_model().objects.get(id=id)
-        user.first_name=firstname
-        user.last_name=lastname
+        user.first_name = firstname
+        user.last_name = lastname
+        user.username = username
+        user.email = email
         user.type = utype
         user.portrait = portrait
-        user.save()
+        if password:
+            user.password = password
+        try:
+            user.save()
+        except Exception as e:
+            pass
     else:
         try:
             user = get_user_model().objects.create_user(username, email=email, password=password, type=utype)
             user.first_name=firstname
             user.last_name=lastname
+            user.username = username
+            user.email = email
             user.type = utype
             user.portrait = portrait
+            if password:
+                user.password = password
             user.save()
         except Exception as e:
-            logger.error('Create user Exception: %s'%e)
-        return user
+            pass
+    return user
 
 def find_user(account):
     # both user name and email must be unique
@@ -211,7 +222,7 @@ class UserView(View):
             if uid:
                 user = get_user_model().objects.get(id=uid)
                 if user is not None:
-                    obj = {'username':user.username, 'email':user.email, 'type':user.type, 'password':user.password,
+                    obj = {'id':uid, 'username':user.username, 'email':user.email, 'type':user.type, 'password':user.password,
                            'first_name':'', 'last_name':'', 'portrait':'' }
                     token = create_jwt_token(obj);
                     return JsonResponse({'token':token, 'data':obj})
@@ -239,14 +250,15 @@ class UserView(View):
         
         if id:
             user = get_user_model().objects.get(id=id)
+            user = save_user(id, username, email, password, utype)
         else:
             if find_user(email) or find_user(username):
                 return JsonResponse({'token':'', 'user':''})
             else: # username, email cannot be empty
-                user = save_user(None, username, email, password, utype)
+                user = save_user(id, username, email, password, utype)
                 
         if user is not None:
-            obj = {'username':username, 'email':email, 'type':utype, 'password':'',
+            obj = {'id':user.id, 'username':username, 'email':email, 'type':utype, 'password':'',
                    'first_name':'', 'last_name':'', 'portrait':'' }
             token = create_jwt_token(obj);
             return JsonResponse({'token':token, 'data':obj})

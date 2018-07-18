@@ -14,7 +14,7 @@ from django.contrib.auth import get_user_model
 from commerce.models import Restaurant, Picture, Product, Category, Order, OrderItem, Style, PriceRange, FavoriteProduct 
 from account.models import Province, City, Address
 
-from utils import to_json, get_data_from_token
+from utils import to_json, obj_to_json, get_data_from_token
 
 logger = logging.getLogger(__name__)
 
@@ -141,7 +141,7 @@ class RestaurantView(View):
     def getList(self, req):
         lat = req.GET.get('lat')
         lng = req.GET.get('lng')
-        distance = 5 # km
+        distance = 25 # km
         restaurants = []
         admin_id = req.GET.get('admin_id')
         if admin_id: # need address
@@ -179,7 +179,7 @@ class RestaurantView(View):
         if pid:
             try:
                 item = Restaurant.objects.get(id=int(pid))
-                p = to_json(item)
+                p = obj_to_json(item, False)
                 p['address'] = self.getAddress(item)
                 return JsonResponse({'data':p})
             except Exception as e:
@@ -462,19 +462,19 @@ class ProductView(View):
                     category = None
                 item.categories.add(category)
             
-#             n_pics = int(params.get('n_pictures'))
-#             pictures = []
-#             for i in range(n_pics):
-#                 name = params.get('name%s'%i)
-#                 status = params.get('image_status%s'%i)
-#                 image = req.FILES.get('image%s'%i)
-#                 pictures.append({'index':i,'name':name, 'status':status, 'image':image})
-#                 
-#             processPictures(item, pictures)
-#             
-#             # select default picture
-#             pics = Picture.objects.filter(product_id=item.id)
-#             item.fpath = self.getDefaultPicture(pics)
+            n_pics = int(params.get('n_pictures'))
+            pictures = []
+            for i in range(n_pics):
+                name = params.get('name%s'%i)
+                status = params.get('image_status%s'%i)
+                image = req.FILES.get('image%s'%i)
+                pictures.append({'index':i,'name':name, 'status':status, 'image':image})
+                 
+            processPictures(item, pictures)
+             
+            # select default picture
+            pics = Picture.objects.filter(product_id=item.id)
+            item.fpath = getDefaultPicture(pics)
             item.save()
 
             return JsonResponse({'tokenValid': True,'data':to_json(item)})
